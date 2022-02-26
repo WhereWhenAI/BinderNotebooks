@@ -1,2 +1,2 @@
-git+git://github.com/NavAbility/NavAbilitySDK.py#egg=navabilitysdk
+git+git://github.com/NavAbility/NavAbilitySDK.py@33/async_calls#egg=navabilitysdk
 numpy>=1.21
