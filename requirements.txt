@@ -1,2 +1,3 @@
-https://files.pythonhosted.org/packages/4e/69/9a76d366e98fae9f65cbbd5f48fc525db431d10a7b9bba6a215eafab866f/navabilitysdk-0.2.0.tar.gz
+navabilitysdk>=0.4
 numpy>=1.21
+
