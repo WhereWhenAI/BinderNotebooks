@@ -237,9 +237,9 @@ version = "0.18.1"
 
 [[Distributions]]
 deps = ["ChainRulesCore", "DensityInterface", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SparseArrays", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns", "Test"]
-git-tree-sha1 = "c43e992f186abaf9965cc45e372f4693b7754b22"
+git-tree-sha1 = "5a4168170ede913a2cd679e53c2123cb4b889795"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
-version = "0.25.52"
+version = "0.25.53"
 
 [[DocStringExtensions]]
 deps = ["LibGit2"]
@@ -265,9 +265,9 @@ version = "0.4.1"
 
 [[Expat_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
-git-tree-sha1 = "ae13fcbc7ab8f16b0856729b050ef0c446aa3492"
+git-tree-sha1 = "bad72f730e9e91c08d9427d5e8db95478a3c323d"
 uuid = "2e619515-83b5-522b-bb60-26c02a35a201"
-version = "2.4.4+0"
+version = "2.4.8+0"
 
 [[ExprTools]]
 git-tree-sha1 = "56559bbef6ca5ea0c0818fa5c90320398a6fbf8d"
@@ -784,10 +784,12 @@ uuid = "356022a1-0364-5f58-8944-0da4b18d706f"
 version = "0.2.47"
 
 [[NavAbilitySDK]]
-deps = ["Dates", "Diana", "JSON", "Random"]
-git-tree-sha1 = "3d53d2b918ae6802878e6887a5d6be62e495bbee"
+deps = ["Dates", "Diana", "DocStringExtensions", "JSON", "LinearAlgebra", "Random"]
+git-tree-sha1 = "2093ad30c9ccb60394968486a3ccc7c12e79928d"
+repo-rev = "main"
+repo-url = "https://github.com/NavAbility/NavAbilitySDK.jl.git"
 uuid = "f3e6a059-199c-4ada-8143-fcefb97e6165"
-version = "0.3.0"
+version = "0.4.0"
 
 [[Neo4j]]
 deps = ["Base64", "DataFrames", "DocStringExtensions", "HTTP", "JSON", "Missings"]
@@ -979,9 +981,9 @@ version = "0.3.0+0"
 
 [[RoME]]
 deps = ["ApproxManifoldProducts", "CoordinateTransformations", "Dates", "DelimitedFiles", "Distributed", "DistributedFactorGraphs", "Distributions", "DocStringExtensions", "FileIO", "IncrementalInference", "JLD2", "KernelDensityEstimate", "LinearAlgebra", "Manifolds", "ManifoldsBase", "Optim", "ProgressMeter", "Random", "Reexport", "Requires", "Rotations", "StaticArrays", "Statistics", "TensorCast", "TransformUtils"]
-git-tree-sha1 = "4203363f034dc947ef6793a943c170ee74ab5754"
+git-tree-sha1 = "05a764d9ecbfd66c0a60404ed9a2ba2b9d923ad7"
 uuid = "91fb55c2-4c03-5a59-ba21-f4ea956187b8"
-version = "0.18.1"
+version = "0.18.2"
 
 [[RoMEPlotting]]
 deps = ["ApproxManifoldProducts", "Cairo", "Colors", "Compose", "Dates", "DistributedFactorGraphs", "DocStringExtensions", "Fontconfig", "Gadfly", "IncrementalInference", "KernelDensityEstimate", "KernelDensityEstimatePlotting", "LinearAlgebra", "Reexport", "Requires", "RoME", "Statistics", "StatsBase", "TensorCast"]
