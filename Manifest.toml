@@ -29,9 +29,9 @@ version = "0.1.0"
 
 [[ArrayInterface]]
 deps = ["Compat", "IfElse", "LinearAlgebra", "Requires", "SparseArrays", "Static"]
-git-tree-sha1 = "6e8fada11bb015ecf9263f64b156f98b546918c7"
+git-tree-sha1 = "8d4a07999261b4461daae67b2d1e12ae1a097741"
 uuid = "4fba245c-0d91-5ea0-9b3e-6abc04ee57a9"
-version = "5.0.5"
+version = "5.0.6"
 
 [[Artifacts]]
 uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
@@ -707,9 +707,9 @@ version = "0.7.7"
 
 [[ManifoldsBase]]
 deps = ["LinearAlgebra", "Markdown"]
-git-tree-sha1 = "058ba95cf4a41d4c7b88879f5b961352880ec919"
+git-tree-sha1 = "b8518cbf0f06f1375c95479759b266bd75d89ad9"
 uuid = "3362f125-f0bb-47a3-aa74-596ffd7ef2fb"
-version = "0.12.12"
+version = "0.12.13"
 
 [[Markdown]]
 deps = ["Base64"]
@@ -784,10 +784,8 @@ uuid = "356022a1-0364-5f58-8944-0da4b18d706f"
 version = "0.2.47"
 
 [[NavAbilitySDK]]
-deps = ["Dates", "Diana", "DocStringExtensions", "JSON", "LinearAlgebra", "Random"]
-git-tree-sha1 = "2093ad30c9ccb60394968486a3ccc7c12e79928d"
-repo-rev = "main"
-repo-url = "https://github.com/NavAbility/NavAbilitySDK.jl.git"
+deps = ["Dates", "Diana", "DocStringExtensions", "JSON", "LinearAlgebra", "Random", "UUIDs"]
+git-tree-sha1 = "f62858c137c5eee3bd65e5c49baede04563e0c3e"
 uuid = "f3e6a059-199c-4ada-8143-fcefb97e6165"
 version = "0.4.0"
 
@@ -862,9 +860,9 @@ version = "0.12.3"
 
 [[Parsers]]
 deps = ["Dates"]
-git-tree-sha1 = "85b5da0fa43588c75bb1ff986493443f821c70b7"
+git-tree-sha1 = "621f4f3b4977325b9128d5fae7a8b4829a0c2222"
 uuid = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
-version = "2.2.3"
+version = "2.2.4"
 
 [[Pixman_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1120,9 +1118,9 @@ uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [[TimeZones]]
 deps = ["Dates", "Downloads", "InlineStrings", "LazyArtifacts", "Mocking", "Printf", "RecipesBase", "Serialization", "Unicode"]
-git-tree-sha1 = "2d4b6de8676b34525ac518de36006dc2e89c7e2e"
+git-tree-sha1 = "0a359b0ee27e4fbc90d9b3da1f48ddc6f98a0c9e"
 uuid = "f269a46b-ccf7-5d73-abea-4c690281aa53"
-version = "1.7.2"
+version = "1.7.3"
 
 [[TranscodingStreams]]
 deps = ["Random", "Test"]
