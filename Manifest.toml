@@ -231,9 +231,9 @@ uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 
 [[DistributedFactorGraphs]]
 deps = ["Base64", "Colors", "Dates", "Distributions", "DocStringExtensions", "Graphs", "JSON", "JSON2", "LightGraphs", "LinearAlgebra", "ManifoldsBase", "Neo4j", "Pkg", "Reexport", "Requires", "SHA", "SparseArrays", "TensorCast", "TimeZones", "UUIDs", "Unmarshal"]
-git-tree-sha1 = "0e8aa23ff92b6cb3d34f93a23fe557d22cb2c800"
+git-tree-sha1 = "ac11ffdf6d64cea6175a1cbfc73b9c55be09cd6d"
 uuid = "b5cc3c7e-6572-11e9-2517-99fb8daf2f04"
-version = "0.18.1"
+version = "0.18.2"
 
 [[Distributions]]
 deps = ["ChainRulesCore", "DensityInterface", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SparseArrays", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns", "Test"]
@@ -446,9 +446,9 @@ version = "0.1.1"
 
 [[IncrementalInference]]
 deps = ["ApproxManifoldProducts", "BSON", "Base64", "Combinatorics", "DataStructures", "Dates", "DelimitedFiles", "Distributed", "DistributedFactorGraphs", "Distributions", "DocStringExtensions", "FileIO", "FunctionalStateMachine", "JSON", "JSON2", "KernelDensityEstimate", "LinearAlgebra", "Logging", "Manifolds", "ManifoldsBase", "MetaGraphs", "NLSolversBase", "NLsolve", "Optim", "ProgressMeter", "Random", "Reexport", "Requires", "SparseArrays", "StaticArrays", "Statistics", "StatsBase", "SuiteSparse", "TensorCast", "TimeZones", "UUIDs"]
-git-tree-sha1 = "a68df6df8d8c600bc0d02df9d91dfc86519b3b44"
+git-tree-sha1 = "62e2015ae0c596fe552d32ce2f797ab4488c5ad4"
 uuid = "904591bb-b899-562f-9e6f-b8df64c7d480"
-version = "0.27.3"
+version = "0.27.4"
 
 [[IndirectArrays]]
 git-tree-sha1 = "012e604e1c7458645cb8b436f8fba789a51b257f"
@@ -701,9 +701,9 @@ version = "0.5.9"
 
 [[Manifolds]]
 deps = ["Colors", "Distributions", "Einsum", "Graphs", "HybridArrays", "Kronecker", "LinearAlgebra", "ManifoldsBase", "Markdown", "Random", "RecipesBase", "RecursiveArrayTools", "Requires", "SimpleWeightedGraphs", "SpecialFunctions", "StaticArrays", "Statistics", "StatsBase"]
-git-tree-sha1 = "e8fb7c69d6e67d377152fd882a20334535db050f"
+git-tree-sha1 = "cc5e34ecd061bf9bedd62a8b8a28abe96c3b7c6e"
 uuid = "1cead3c2-87b3-11e9-0ccd-23c62b72b94e"
-version = "0.7.7"
+version = "0.7.8"
 
 [[ManifoldsBase]]
 deps = ["LinearAlgebra", "Markdown"]
@@ -1072,9 +1072,9 @@ version = "0.33.16"
 
 [[StatsFuns]]
 deps = ["ChainRulesCore", "HypergeometricFunctions", "InverseFunctions", "IrrationalConstants", "LogExpFunctions", "Reexport", "Rmath", "SpecialFunctions"]
-git-tree-sha1 = "25405d7016a47cf2bd6cd91e66f4de437fd54a07"
+git-tree-sha1 = "72e6abd6fc9ef0fa62a159713c83b7637a14b2b8"
 uuid = "4c63d2b9-4356-54db-8cca-17b64c39e42c"
-version = "0.9.16"
+version = "0.9.17"
 
 [[Strided]]
 deps = ["LinearAlgebra", "TupleTools"]
