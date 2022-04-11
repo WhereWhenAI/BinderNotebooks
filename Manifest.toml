@@ -785,9 +785,9 @@ version = "0.2.47"
 
 [[NavAbilitySDK]]
 deps = ["Dates", "Diana", "DocStringExtensions", "JSON", "LinearAlgebra", "Random", "UUIDs"]
-git-tree-sha1 = "f62858c137c5eee3bd65e5c49baede04563e0c3e"
+git-tree-sha1 = "8ee703610980956c253fa734595715b77bba34a2"
 uuid = "f3e6a059-199c-4ada-8143-fcefb97e6165"
-version = "0.4.0"
+version = "0.4.1"
 
 [[Neo4j]]
 deps = ["Base64", "DataFrames", "DocStringExtensions", "HTTP", "JSON", "Missings"]
