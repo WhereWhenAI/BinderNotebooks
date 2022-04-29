@@ -237,9 +237,9 @@ version = "0.18.3"
 
 [[Distributions]]
 deps = ["ChainRulesCore", "DensityInterface", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "SparseArrays", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns", "Test"]
-git-tree-sha1 = "5a4168170ede913a2cd679e53c2123cb4b889795"
+git-tree-sha1 = "58d51b2cc7648b750f5fc012d45ddc3bfc0628ee"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
-version = "0.25.53"
+version = "0.25.54"
 
 [[DocStringExtensions]]
 deps = ["LibGit2"]
@@ -779,9 +779,9 @@ version = "0.2.47"
 
 [[NavAbilitySDK]]
 deps = ["Dates", "Diana", "DocStringExtensions", "JSON", "LinearAlgebra", "Random", "UUIDs"]
-git-tree-sha1 = "87f424df2a2795059d5953efe3f347e406194589"
+git-tree-sha1 = "f117346d55a0f6643646d6b4435d2613b1ad28f3"
 uuid = "f3e6a059-199c-4ada-8143-fcefb97e6165"
-version = "0.4.3"
+version = "0.4.4"
 
 [[Neo4j]]
 deps = ["Base64", "DataFrames", "DocStringExtensions", "HTTP", "JSON", "Missings"]
