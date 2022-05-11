@@ -569,15 +569,15 @@ version = "0.5.1"
 
 [[LLVM]]
 deps = ["CEnum", "LLVMExtra_jll", "Libdl", "Printf", "Unicode"]
-git-tree-sha1 = "c9b86064be5ae0f63e50816a5a90b08c474507ae"
+git-tree-sha1 = "d7f3db3b5f564016b5dfcc71a20506f8796f403a"
 uuid = "929cbde3-209d-540e-8aea-75f648917ca0"
-version = "4.9.1"
+version = "4.10.0"
 
 [[LLVMExtra_jll]]
 deps = ["Artifacts", "JLLWrappers", "LazyArtifacts", "Libdl", "Pkg", "TOML"]
-git-tree-sha1 = "43817483288cdceb8d3258756040a3e63578bb1b"
+git-tree-sha1 = "00d23b26d194507028b9a1c2728a691ab9914262"
 uuid = "dad2f222-ce93-54a1-a47d-0025e8a3acab"
-version = "0.0.14+3"
+version = "0.0.15+0"
 
 [[LZO_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -784,10 +784,10 @@ uuid = "356022a1-0364-5f58-8944-0da4b18d706f"
 version = "0.2.47"
 
 [[NavAbilitySDK]]
-deps = ["Dates", "Diana", "DocStringExtensions", "JSON", "LinearAlgebra", "Random", "UUIDs"]
-git-tree-sha1 = "f117346d55a0f6643646d6b4435d2613b1ad28f3"
+deps = ["Dates", "Diana", "DocStringExtensions", "Downloads", "HTTP", "JSON", "LinearAlgebra", "Random", "UUIDs"]
+git-tree-sha1 = "7a9161c8cac74b4dbae9119aae3e3736387e5371"
 uuid = "f3e6a059-199c-4ada-8143-fcefb97e6165"
-version = "0.4.4"
+version = "0.4.5"
 
 [[Neo4j]]
 deps = ["Base64", "DataFrames", "DocStringExtensions", "HTTP", "JSON", "Missings"]
