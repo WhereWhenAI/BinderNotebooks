@@ -4,8 +4,11 @@
 format: jb-book
 root: index
 parts:
-- caption: NavAbility ICRA2022 Workshop
+- caption: Python SDK
   chapters:
   - file: icra-1-simple
+  - file: icra-2-nongaussian
+  - file: icra-3-rangeonly
+  - file: icra-4-contradictorydata
 
 
