@@ -1,0 +1,65 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+v = Variable("x0", VariableType.Pose2.value)
+reqId = await addVariable(navability_client, client, v)
+await waitForCompletion(navability_client, [reqId])
+reqId
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTransportQueryError[0m                       Traceback (most recent call last)
+Input [0;32mIn [3][0m, in [0;36m<cell line: 2>[0;34m()[0m
+[1;32m      1[0m v [38;5;241m=[39m Variable([38;5;124m"[39m[38;5;124mx0[39m[38;5;124m"[39m, VariableType[38;5;241m.[39mPose2[38;5;241m.[39mvalue)
+[0;32m----> 2[0m reqId [38;5;241m=[39m [38;5;28;01mawait[39;00m addVariable(navability_client, client, v)
+[1;32m      3[0m [38;5;28;01mawait[39;00m waitForCompletion(navability_client, [reqId])
+[1;32m      4[0m reqId
+
+File [0;32m/opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/navability/services/variable.py:39[0m, in [0;36m_addVariable[0;34m(navAbilityClient, client, v)[0m
+[1;32m     38[0m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m [38;5;21m_addVariable[39m(navAbilityClient: NavAbilityClient, client: Client, v: Variable):
+[0;32m---> 39[0m     result [38;5;241m=[39m [38;5;28;01mawait[39;00m navAbilityClient[38;5;241m.[39mmutate(
+[1;32m     40[0m         MutationOptions(
+[1;32m     41[0m             gql(GQL_ADDVARIABLE),
+[1;32m     42[0m             {[38;5;124m"[39m[38;5;124mvariable[39m[38;5;124m"[39m: {[38;5;124m"[39m[38;5;124mclient[39m[38;5;124m"[39m: client[38;5;241m.[39mdump(), [38;5;124m"[39m[38;5;124mpackedData[39m[38;5;124m"[39m: v[38;5;241m.[39mdumpsPacked()}},
+[1;32m     43[0m         )
+[1;32m     44[0m     )
+[1;32m     45[0m     [38;5;28;01mreturn[39;00m result[[38;5;124m"[39m[38;5;124maddVariable[39m[38;5;124m"[39m]
+
+File [0;32m/opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/navability/entities/navabilityclient.py:75[0m, in [0;36mNavAbilityHttpsClient.mutate[0;34m(self, options)[0m
+[1;32m     71[0m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m [38;5;21mmutate[39m([38;5;28mself[39m, options: MutationOptions):
+[1;32m     72[0m     [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m GQLCLient(
+[1;32m     73[0m         transport[38;5;241m=[39m[38;5;28mself[39m[38;5;241m.[39mtransport, fetch_schema_from_transport[38;5;241m=[39m[38;5;28;01mTrue[39;00m
+[1;32m     74[0m     ) [38;5;28;01mas[39;00m client:
+[0;32m---> 75[0m         result [38;5;241m=[39m [38;5;28;01mawait[39;00m client[38;5;241m.[39mexecute(options[38;5;241m.[39mmutation, options[38;5;241m.[39mvariables)
+[1;32m     76[0m         [38;5;28;01mreturn[39;00m result
+
+File [0;32m/opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/gql/client.py:412[0m, in [0;36mAsyncClientSession.execute[0;34m(self, document, *args, **kwargs)[0m
+[1;32m    410[0m [38;5;66;03m# Raise an error if an error is returned in the ExecutionResult object[39;00m
+[1;32m    411[0m [38;5;28;01mif[39;00m result[38;5;241m.[39merrors:
+[0;32m--> 412[0m     [38;5;28;01mraise[39;00m TransportQueryError(
+[1;32m    413[0m         [38;5;28mstr[39m(result[38;5;241m.[39merrors[[38;5;241m0[39m]), errors[38;5;241m=[39mresult[38;5;241m.[39merrors, data[38;5;241m=[39mresult[38;5;241m.[39mdata
+[1;32m    414[0m     )
+[1;32m    416[0m [38;5;28;01massert[39;00m (
+[1;32m    417[0m     result[38;5;241m.[39mdata [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+[1;32m    418[0m ), [38;5;124m"[39m[38;5;124mTransport returned an ExecutionResult without data or errors[39m[38;5;124m"[39m
+[1;32m    420[0m [38;5;28;01mreturn[39;00m result[38;5;241m.[39mdata
+
+[0;31mTransportQueryError[0m: {'message': 'Forbidden', 'path': ['addVariable'], 'extensions': {'code': 'INTERNAL_SERVER_ERROR'}}
+TransportQueryError: {'message': 'Forbidden', 'path': ['addVariable'], 'extensions': {'code': 'INTERNAL_SERVER_ERROR'}}
+

@@ -1,0 +1,1222 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 2: Non-Gaussian Measurements &#8212; NavAbility ICRA2022 Tutorials</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tutorial 3: Insufficient Data (2D Range-only)" href="icra-3-rangeonly.html" />
+    <link rel="prev" title="Tutorial 1: Creating and Solving Factor Graphs" href="icra-1-simple.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NavAbility ICRA2022 Tutorials</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python SDK
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="icra-1-simple.html">
+   Tutorial 1: Creating and Solving Factor Graphs
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tutorial 2: Non-Gaussian Measurements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="icra-3-rangeonly.html">
+   Tutorial 3: Insufficient Data (2D Range-only)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="icra-4-contradictorydata.html">
+   ICRA Tutorial 4, Leveraging (Contradictory) Prior Data
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/NavAbility/BinderNotebooks/main?urlpath=tree/docs/python/navability-sdk/icra-2-nongaussian.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/NavAbility/BinderNotebooks/"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/NavAbility/BinderNotebooks//issues/new?title=Issue%20on%20page%20%2Fpython/navability-sdk/icra-2-nongaussian.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/python/navability-sdk/icra-2-nongaussian.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 2: Non-Gaussian Measurements
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#youtube-walk-through-video">
+     YouTube Walk Through Video
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#applications-with-ambiguous-data">
+     Applications with Ambiguous Data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-basic-1d-example">
+       A Basic 1D Example
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#signatures-used">
+       Signatures Used
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ambiguous-data-example">
+     Ambiguous Data Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#icra-survey">
+   ICRA Survey
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#starting-a-1d-factor-graph">
+     Starting a 1D Factor Graph
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#variable-continuousscalar">
+       Variable,
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         ContinuousScalar
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prior-factor-euclidean-1">
+       Prior Factor, (Euclidean(1))
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizing-graph-topology">
+       Visualizing Graph Topology
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#next-variable-and-relative-factor">
+       Next Variable and Relative Factor
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizing-the-variable-probability-belief">
+       Visualizing the Variable Probability Belief
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-gaussian-measurement-to-x2">
+     Non-Gaussian Measurement to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       x2
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#non-parametric-measurements">
+       Non-parametric Measurements
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mixture-distribution-on-next-relative-factor-wheel-slip">
+       Mixture Distribution on Next Relative Factor (Wheel Slip)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#each-mode-mean-slip-or-no-slip">
+       Each Mode Mean Slip or No-Slip
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-variable-x3">
+     Adding Variable
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       x3
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-last-factor">
+       The Last Factor
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solve-the-graph">
+     Solve the Graph
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#re-solve-to-ensure-stable-solution">
+       Re-solve to ensure Stable Solution
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-wheels-did-slip">
+       The Wheels Did Slip!
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conclusion">
+     Conclusion
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#next-steps">
+     Next Steps
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#case-study-marine-surface-navigation">
+       Case Study: Marine Surface Navigation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tutorial 2: Non-Gaussian Measurements</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 2: Non-Gaussian Measurements
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#youtube-walk-through-video">
+     YouTube Walk Through Video
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#applications-with-ambiguous-data">
+     Applications with Ambiguous Data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-basic-1d-example">
+       A Basic 1D Example
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#signatures-used">
+       Signatures Used
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ambiguous-data-example">
+     Ambiguous Data Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#icra-survey">
+   ICRA Survey
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#starting-a-1d-factor-graph">
+     Starting a 1D Factor Graph
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#variable-continuousscalar">
+       Variable,
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         ContinuousScalar
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prior-factor-euclidean-1">
+       Prior Factor, (Euclidean(1))
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizing-graph-topology">
+       Visualizing Graph Topology
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#next-variable-and-relative-factor">
+       Next Variable and Relative Factor
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizing-the-variable-probability-belief">
+       Visualizing the Variable Probability Belief
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-gaussian-measurement-to-x2">
+     Non-Gaussian Measurement to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       x2
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#non-parametric-measurements">
+       Non-parametric Measurements
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mixture-distribution-on-next-relative-factor-wheel-slip">
+       Mixture Distribution on Next Relative Factor (Wheel Slip)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#each-mode-mean-slip-or-no-slip">
+       Each Mode Mean Slip or No-Slip
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-variable-x3">
+     Adding Variable
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       x3
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-last-factor">
+       The Last Factor
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solve-the-graph">
+     Solve the Graph
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#re-solve-to-ensure-stable-solution">
+       Re-solve to ensure Stable Solution
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-wheels-did-slip">
+       The Wheels Did Slip!
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conclusion">
+     Conclusion
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#next-steps">
+     Next Steps
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#case-study-marine-surface-navigation">
+       Case Study: Marine Surface Navigation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="tutorial-2-non-gaussian-measurements">
+<h1>Tutorial 2: Non-Gaussian Measurements<a class="headerlink" href="#tutorial-2-non-gaussian-measurements" title="Permalink to this headline">#</a></h1>
+<p><strong>API Version: Python <a class="reference external" href="http://NavAbilitySDK.py">NavAbilitySDK.py</a></strong></p>
+<section id="youtube-walk-through-video">
+<h2>YouTube Walk Through Video<a class="headerlink" href="#youtube-walk-through-video" title="Permalink to this headline">#</a></h2>
+<p>A walk through of this video has been prepared and can be found at:</p>
+<p><a class="reference external" href="https://youtu.be/kHZ_K9DEceY"><img alt="Tutorial 2 Walk Through" src="https://img.youtube.com/vi/kHZ_K9DEceY/0.jpg" /></a></p>
+</section>
+<section id="applications-with-ambiguous-data">
+<h2>Applications with Ambiguous Data<a class="headerlink" href="#applications-with-ambiguous-data" title="Permalink to this headline">#</a></h2>
+<p>There are many, many ways in which non-Gaussian / ambiguous measurements occur, this tutorial will simply pick one common example to illustrate the basic concepts.  In short, measurements do not have to follow a unimodal bell curve (i.e. normal/Gaussian) but can instead introduce non-Gaussian beliefs.</p>
+<ul class="simple">
+<li><p>Localizing ground robots suffering <strong>wheel slip or getting stuck</strong> (rotary encoders),</p></li>
+<li><p>Fusing <strong>ambiguous RADAR</strong> data into navigation for driving autonomy,</p></li>
+<li><p>Mapping underwater structures from ambiguous <strong>SONAR data</strong>,</p></li>
+<li><p>Overcoming gearbox <strong>backlash in kinematic</strong> robot arms / legs,</p></li>
+<li><p>Navigating ground / marine surface vehicles through GNSS, radio, laser ranging signal multipath situations (e.g. - <strong>urban canyon</strong>),</p></li>
+<li><p>And many more.</p></li>
+</ul>
+<section id="a-basic-1d-example">
+<h3>A Basic 1D Example<a class="headerlink" href="#a-basic-1d-example" title="Permalink to this headline">#</a></h3>
+<p>There are many, many ways in which non-Gaussian / ambiguous measurements occur, this tutorial will simply pick one common example to illustrate the basic concepts.  In short, measurements do not have to follow a unimodal bell curve (i.e. normal/Gaussian) but can instead introduce non-Gaussian beliefs.</p>
+<p>We ground the tutorial in an example: imagine a wheeled robot travelling along in a straight line, using wheel encoders to estimate the distance travelled.  There is, however, a quirk, from time to time the robot gets stuck on something and the wheels spin for a few rotations before progress continues.</p>
+<p><img alt="Tutorial 2 Img" src="https://github.com/NavAbility/BinderNotebooks/raw/main/static/icra-2/example-wheelslip.png" /></p>
+<p>We assume that our software is able to detect when the wheels are slipping, but by how much is unclear.  We take it that when slip is detected, the distance of slip measurement is only 40% accurate.  In this tutorial, we will build a basic robot localization process that can handle this “bad” measurement data.</p>
+<p>To help familiarize yourself with multi-modal beliefs, we limit this tutorial to a one dimensional example with only a few variables and factors.  This tutorial introduces non-Gaussian behavior through non-Gaussian measurements in the factor graph.  At the end of the page, we link to an example that is 2D, real-world, and has non-Gaussian odometry.</p>
+<p>This example shows <a class="reference external" href="https://juliarobotics.org/Caesar.jl/latest/concepts/why_nongaussian/">one of four</a> mechanisms by which non-Gaussian behavior can be introduced into a factor graph solution, see other tutorials for other mechanisms.  The ambiguous measurement example shown in this tutorial can readily be incorporated in other use cases.</p>
+<p>The tutorial shows how multi-modal uncertainty can be introduced from non-Gaussian measurements, and how that is transmitted through the system.  We will build a factor graph that contains multi-modal belief as well as <code class="docutils literal notranslate"><span class="pre">Uniform</span></code> and <code class="docutils literal notranslate"><span class="pre">Rayleigh</span></code> distributions.  We can construct factor graph of heterogeneous data and let the joint inference find the best marginal posterior estimates on each of the desired variables in the factor graph.</p>
+</section>
+<section id="signatures-used">
+<h3>Signatures Used<a class="headerlink" href="#signatures-used" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ContinuousScalar</span></code>, <code class="docutils literal notranslate"><span class="pre">Prior</span></code>, <code class="docutils literal notranslate"><span class="pre">LinearRelative</span></code>, <code class="docutils literal notranslate"><span class="pre">Mixture</span></code>, <code class="docutils literal notranslate"><span class="pre">Normal</span></code></p>
+</section>
+</section>
+<section id="ambiguous-data-example">
+<h2>Ambiguous Data Example<a class="headerlink" href="#ambiguous-data-example" title="Permalink to this headline">#</a></h2>
+<p>The first step is to load the <code class="docutils literal notranslate"><span class="pre">NavAbilitySDK</span></code> functionality and a few other library features,</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="icra-survey">
+<h1>ICRA Survey<a class="headerlink" href="#icra-survey" title="Permalink to this headline">#</a></h1>
+<p>Thanks for doing our tutorials! We really want to make sure this is valuable for you.</p>
+<p>This <a class="reference external" href="https://docs.google.com/forms/d/e/1FAIpQLScQiZHguPN7YP18-VhfbqqQw621EswuBIJZj191x70CPrCiKw/viewform?vc=0&amp;c=0&amp;w=1&amp;flr=0">quick 2 minute survey</a> will help us improve them for next year’s workshop.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # ONLY IF REQUIRED, Install a pip package in the current Jupyter kernel</span>
+<span class="c1"># import sys</span>
+<span class="c1"># !{sys.executable} -m pip install navabilitysdk</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">navability.entities</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">navability.services</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="starting-a-1d-factor-graph">
+<h2>Starting a 1D Factor Graph<a class="headerlink" href="#starting-a-1d-factor-graph" title="Permalink to this headline">#</a></h2>
+<section id="variable-continuousscalar">
+<h3>Variable, <code class="docutils literal notranslate"><span class="pre">ContinuousScalar</span></code><a class="headerlink" href="#variable-continuousscalar" title="Permalink to this headline">#</a></h3>
+<p>The first thing to do is setup a client-context to talk with the NavAbility Platform.
+The next step is to describe the inference problem with a graphical model by populating the factor graph with variable nodes.
+The variable nodes are identified by <code class="docutils literal notranslate"><span class="pre">String</span></code>s, namely <code class="docutils literal notranslate"><span class="pre">x0,</span> <span class="pre">x1,</span> <span class="pre">x2,</span> <span class="pre">x3</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">navability_client</span> <span class="o">=</span> <span class="n">NavAbilityHttpsClient</span><span class="p">()</span>
+<span class="c1"># you need a unique userId:robotId, and can keep using that across all tutorials</span>
+<span class="n">userId</span> <span class="o">=</span> <span class="s2">&quot;guest@navability.io&quot;</span>
+<span class="n">robotId</span> <span class="o">=</span> <span class="s2">&quot;SDKpy_&quot;</span><span class="o">+</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="n">sessionId</span> <span class="o">=</span> <span class="s2">&quot;Tutorial2_&quot;</span><span class="o">+</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span> <span class="n">robotId</span><span class="p">,</span> <span class="n">sessionId</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add the first node</span>
+<span class="n">result_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">addVariable</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="s2">&quot;x0&quot;</span><span class="p">,</span> <span class="n">VariableType</span><span class="o">.</span><span class="n">ContinuousScalar</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added x0 with result ID </span><span class="si">{</span><span class="n">result_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Wait for it to be loaded.</span>
+<span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">result_id</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Added x0 with result ID 01GS9XQB9SRQWXK8YVAPS7T8HG
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="prior-factor-euclidean-1">
+<h3>Prior Factor, (Euclidean(1))<a class="headerlink" href="#prior-factor-euclidean-1" title="Permalink to this headline">#</a></h3>
+<p>Factor graphs are bipartite graphs with <code class="docutils literal notranslate"><span class="pre">factors</span></code> that act as mathematical structure between interacting <code class="docutils literal notranslate"><span class="pre">variables</span></code>.
+After adding node <code class="docutils literal notranslate"><span class="pre">x0</span></code>, a singleton factor of type <code class="docutils literal notranslate"><span class="pre">Prior</span></code> (which was defined by the user earlier) is ‘connected to’ variable node <code class="docutils literal notranslate"><span class="pre">x0</span></code>.
+This unary factor is taken as a <code class="docutils literal notranslate"><span class="pre">Normal</span></code> distribution with zero mean and a standard deviation of <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is unary (prior) factor and does not immediately trigger autoinit of :x0.</span>
+<span class="c1"># REF: addFactor!(fg, [:x0], Prior(Normal(0,1)))</span>
+<span class="n">result_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">addFactor</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x0&quot;</span><span class="p">],</span> <span class="n">Prior</span><span class="p">(</span><span class="n">Normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note</strong>, this example is using just <code class="docutils literal notranslate"><span class="pre">Prior</span></code>, which is a simplification for the sake of this tutorial.  Look out for on-manifold prior factors in other code examples.</p>
+</section>
+<section id="visualizing-graph-topology">
+<h3>Visualizing Graph Topology<a class="headerlink" href="#visualizing-graph-topology" title="Permalink to this headline">#</a></h3>
+<p>Visualization for the SDK interfaces is provided by the NavAbility WebApp, click the generated graphics to open the link:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># click the generated graphic to link to the NavAbiltiy WebApp visualization</span>
+<span class="n">GraphVizApp</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">variableStartsWith</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://app.navability.io/cloud/graph/?userId=guest@navability.io&amp;robotStartsWith=SDKpy_092&amp;sessionStartsWith=Tutorial2_f76&amp;variableStartsWith
+</pre></div>
+</div>
+<p><a class="reference external" href="https://app.navability.io/cloud/graph/?userId=guest&#64;navability.io&amp;robotStartsWith=SDKpy_092&amp;sessionStartsWith=Tutorial2_f76&amp;variableStartsWith"><img alt="Navigate to Factor Graph" src="http://www.navability.io/wp-content/uploads/2022/03/factor_graph.png" /></a></p>
+</div>
+</div>
+<p>The topological graph plot obtained from the NavAbility App above shows the two node factor graph, one variable and one prior factor.  This example uses graph-based automatic variable initialization which was discussed in ICRA 2022 Tutorial 1.</p>
+</section>
+<section id="next-variable-and-relative-factor">
+<h3>Next Variable and Relative Factor<a class="headerlink" href="#next-variable-and-relative-factor" title="Permalink to this headline">#</a></h3>
+<p>Now let’s add a second variable <code class="docutils literal notranslate"><span class="pre">x1</span></code>, and connect it to <code class="docutils literal notranslate"><span class="pre">x0</span></code> with a <code class="docutils literal notranslate"><span class="pre">LinearRelative</span></code> factor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add x1</span>
+<span class="n">result_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">addVariable</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="n">VariableType</span><span class="o">.</span><span class="n">ContinuousScalar</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added x1 with result ID </span><span class="si">{</span><span class="n">result_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">await</span> <span class="n">getStatusLatest</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">result_id</span><span class="p">)</span>
+
+<span class="c1"># P(Z | :x1 - :x0 ) where Z ~ Normal(10,1)</span>
+<span class="n">result_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">addFactor</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x0&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">],</span> <span class="n">LinearRelative</span><span class="p">(</span><span class="n">Normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Added x1 with result ID 01GS9XQEJ5WJZ1B4EQV5S8KMSW
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-the-variable-probability-belief">
+<h3>Visualizing the Variable Probability Belief<a class="headerlink" href="#visualizing-the-variable-probability-belief" title="Permalink to this headline">#</a></h3>
+<p>The NavAbility WebApp allows visualization (plotting) of the belief state over any of the variable nodes.
+Remember the first time executions are slow given the required code compilation, and that future versions of these packages will use more precompilation to reduce first execution running cost.</p>
+<p>We first need to trigger a solve for the web application to update its belief estimates. We first make sure that the all tasks have completed, and then trigger a new solve.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wait for graph modifications to complete</span>
+<span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">result_id</span><span class="p">])</span>
+
+<span class="c1"># trigger a new solve</span>
+<span class="n">solve_request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">solveSession</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;running solve...&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;client&#39;: OrderedDict([(&#39;userId&#39;, &#39;guest@navability.io&#39;), (&#39;robotId&#39;, &#39;SDKpy_092&#39;), (&#39;sessionId&#39;, &#39;Tutorial2_f76&#39;)])}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running solve...
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once the solve completes, we can plot the results using the NavAbility WebApp</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wait for the solve to complete</span>
+<span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">solve_request</span><span class="p">],</span> <span class="n">maxSeconds</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+
+<span class="c1"># click the generated graphic to link to the NavAbiltiy WebApp visualization</span>
+<span class="n">MapVizApp</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [9],</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">solve_request</span><span class="p">],</span> <span class="n">maxSeconds</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># click the generated graphic to link to the NavAbiltiy WebApp visualization</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">MapVizApp</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/navability/services/utils.py:62,</span> in <span class="ni">MapVizApp</span><span class="nt">(client, variableStartsWith)</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">if</span> <span class="n">variableStartsWith</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="n">geometry_vis_link</span> <span class="o">=</span> <span class="n">geometry_vis_link</span> <span class="o">+</span> <span class="s2">&quot;&amp;variableStartsWith&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">62</span>     <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">variableStartsWith</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>         <span class="n">geometry_vis_link</span> <span class="o">=</span> <span class="n">geometry_vis_link</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="n">variableStartsWith</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="nb">print</span><span class="p">(</span><span class="n">geometry_vis_link</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: object of type &#39;NoneType&#39; has no len()
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>TIP</strong>, click the “SHOW DISTRIBUTIONS” button in the NavAbility App geometric visualization page to see the belief estimates of solved variables.  You can also “HIDE PPES” parametric point estimates.</p>
+<p>The predicted influence of the <code class="docutils literal notranslate"><span class="pre">P(Z|</span> <span class="pre">X1</span> <span class="pre">-</span> <span class="pre">X0)</span> <span class="pre">=</span> <span class="pre">LinearRelative(Normal(10,</span> <span class="pre">1))</span></code> is shown by the <code class="docutils literal notranslate"><span class="pre">x1</span></code> trace.
+The predicted belief of <code class="docutils literal notranslate"><span class="pre">x1</span></code> is nothing more than the approximated convolution of the current marginal belief of <code class="docutils literal notranslate"><span class="pre">x0</span></code> with the conditional belief described by <code class="docutils literal notranslate"><span class="pre">P(Z</span> <span class="pre">|</span> <span class="pre">X1</span> <span class="pre">-</span> <span class="pre">X0)</span></code>.</p>
+</section>
+</section>
+<section id="non-gaussian-measurement-to-x2">
+<h2>Non-Gaussian Measurement to <code class="docutils literal notranslate"><span class="pre">x2</span></code><a class="headerlink" href="#non-gaussian-measurement-to-x2" title="Permalink to this headline">#</a></h2>
+<section id="non-parametric-measurements">
+<h3>Non-parametric Measurements<a class="headerlink" href="#non-parametric-measurements" title="Permalink to this headline">#</a></h3>
+<p><strong>Important Side Note</strong>: Thus far, this tutorial has used parametric noise models, but the solver can equally consume nonparametric measurements in factors.  These include kernel density estimates, intensity (heat) maps, and more.  To simplify introduction of non-Gaussian noise models, this tutorial will include the simplest form, namely mixture distributions.  A link to a fully non-parametric marine radar example is provided at the end of this tutorial.</p>
+</section>
+<section id="mixture-distribution-on-next-relative-factor-wheel-slip">
+<h3>Mixture Distribution on Next Relative Factor (Wheel Slip)<a class="headerlink" href="#mixture-distribution-on-next-relative-factor-wheel-slip" title="Permalink to this headline">#</a></h3>
+<p>As the robot continues to drive from <code class="docutils literal notranslate"><span class="pre">x1</span></code> to <code class="docutils literal notranslate"><span class="pre">x2</span></code>, the robot software detects wheel slip has occurred.  Here then is the critical point, how should the next odometry measurement incorporate this ambiguous information.  First, we add the next <code class="docutils literal notranslate"><span class="pre">ContinuousScalar</span></code> variable <code class="docutils literal notranslate"><span class="pre">x2</span></code> as before.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">addVariable</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="n">VariableType</span><span class="o">.</span><span class="n">ContinuousScalar</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added x2 with result ID </span><span class="si">{</span><span class="n">result_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This time, however, the odometry factor from <code class="docutils literal notranslate"><span class="pre">x1</span></code> uses a more complicated <code class="docutils literal notranslate"><span class="pre">Mixture</span></code> likelihood function.  Given a 40% accuracy in wheel slip detection, we are going to construct a <code class="docutils literal notranslate"><span class="pre">Mixture</span></code> distribution as the measurement, where 40% weight goes to what we think the distance travelled is while the remaining 60% weight is designated to ‘faulty’ odometry measurement.</p>
+<p>Taking the full encoder turns as 60 units distance, with slip being detected on and off throughout, we estimate the majority slip case as a Rayleigh distribution from 0.  Since we know very little about the non-slip case, let’s take the robot distance traveled as uniformly distributed somewhere between 40 up to 60 units.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">addFactor</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> 
+    <span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">],</span> 
+    <span class="n">Mixture</span><span class="p">(</span><span class="n">LinearRelative</span><span class="p">,</span> 
+        <span class="p">{</span>
+            <span class="s2">&quot;slip&quot;</span><span class="p">:</span> <span class="n">Rayleigh</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> 
+            <span class="s2">&quot;noslip&quot;</span><span class="p">:</span> <span class="n">Uniform</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
+        <span class="p">},</span>
+        <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span>
+        <span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># let&#39;s wait to make sure all nodes were added</span>
+<span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">result_id</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">mmo</span></code> variable illustrates how a near arbitrary mixture probability distribution can be used as a conditional relationship between variable nodes in the factor graph.
+In this case, a 40%/60% balance of a Rayleigh and truncated Uniform distribution which acts as a multi-modal conditional belief.
+Interpret carefully what a conditional belief of this nature actually means.</p>
+<p>This multi-modal belief implies that moving from one of the probable locations in <code class="docutils literal notranslate"><span class="pre">x1</span></code> to a location in <code class="docutils literal notranslate"><span class="pre">x2</span></code> by some processes defined by <code class="docutils literal notranslate"><span class="pre">mmo=P(Z</span> <span class="pre">|</span> <span class="pre">X2,</span> <span class="pre">X1)</span></code> is uncertain to the same 40%/60% ratio.
+In practical terms, collapsing (through observation of an event) the probabilistic likelihoods of the transition from <code class="docutils literal notranslate"><span class="pre">x1</span></code> to <code class="docutils literal notranslate"><span class="pre">x2</span></code> may result in the <code class="docutils literal notranslate"><span class="pre">x2</span></code> location being at either 15-20, or 40-65-ish units.
+The predicted belief over <code class="docutils literal notranslate"><span class="pre">x2</span></code> is illustrated by plotting the predicted belief after triggering a new solve.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solve_request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">solveSession</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;running solve...&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The results visualization updates automatically as the solver finishes. Here is the link to the Geometric map visualizations in th App again:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wait until solve completes</span>
+<span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">solve_request</span><span class="p">],</span> <span class="n">maxSeconds</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+
+<span class="c1"># click the generated graphic to link to the NavAbiltiy WebApp visualization</span>
+<span class="n">MapVizApp</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/icra-2-nongaussian_25_0.png" src="../../_images/icra-2-nongaussian_25_0.png" />
+</div>
+</div>
+<p>Use the SHOW DISTRIBUTIONS button in the App visualization to see the underlying variable belief distribution estimates.</p>
+</section>
+<section id="each-mode-mean-slip-or-no-slip">
+<h3>Each Mode Mean Slip or No-Slip<a class="headerlink" href="#each-mode-mean-slip-or-no-slip" title="Permalink to this headline">#</a></h3>
+<p>Notice the multi-modal belief in the marginal posterior belief of <code class="docutils literal notranslate"><span class="pre">x2</span></code>.  Also note that Kernel Density Estimate methods can appear to produce noisy belief density estimates.  While this does sometimes occur, it is harmless and has no impact on the accuracy of the mean point estimate produced for each mode in the associated belief.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">x2</span></code> mode near <code class="docutils literal notranslate"><span class="pre">20</span></code> is the SLIP-MODE case, and the mode near <code class="docutils literal notranslate"><span class="pre">60</span></code> is the NO-SLIP-MODE.</p>
+</section>
+</section>
+<section id="adding-variable-x3">
+<h2>Adding Variable <code class="docutils literal notranslate"><span class="pre">x3</span></code><a class="headerlink" href="#adding-variable-x3" title="Permalink to this headline">#</a></h2>
+<p>In suspecting that the robot did get stuck and had its wheels slip, we reverse the robot 50 units and add pose variable <code class="docutils literal notranslate"><span class="pre">x3</span></code>,  i.e. a factor measurement <code class="docutils literal notranslate"><span class="pre">LinearRelative(Normal(-50,1))</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">addVariable</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="s2">&quot;x3&quot;</span><span class="p">,</span> <span class="n">VariableType</span><span class="o">.</span><span class="n">ContinuousScalar</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added x3 with result ID </span><span class="si">{</span><span class="n">result_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">result_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">addFactor</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="s2">&quot;x3&quot;</span><span class="p">],</span> <span class="n">LinearRelative</span><span class="p">(</span><span class="n">Normal</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+
+<span class="c1"># let&#39;s wait to make sure all nodes were added</span>
+<span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">result_id</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>expands the factor graph to four variables and four factors.
+This part of the tutorial shows how a unimodal likelihood (conditional belief) can transmit the bimodal belief currently contained in <code class="docutils literal notranslate"><span class="pre">x2</span></code>.  By solving the graph, we get numerical estimates for the variables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solve_request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">solveSession</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;running solve...&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and plotting the marginal posterior belief estimates over each variable to see what the position estimates are given available info:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wait until solve completes</span>
+<span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">solve_request</span><span class="p">],</span> <span class="n">maxSeconds</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+
+<span class="c1"># click the generated graphic to link to the NavAbiltiy WebApp visualization</span>
+<span class="n">MapVizApp</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/icra-2-nongaussian_32_0.png" src="../../_images/icra-2-nongaussian_32_0.png" />
+</div>
+</div>
+<p>Notice the <code class="docutils literal notranslate"><span class="pre">x3</span></code> trace is a shifted and slightly spread out version of the belief on <code class="docutils literal notranslate"><span class="pre">x2</span></code>, through the convolution with the conditional belief <code class="docutils literal notranslate"><span class="pre">P(Z</span> <span class="pre">|</span> <span class="pre">X2,</span> <span class="pre">X3)</span></code>.</p>
+<section id="the-last-factor">
+<h3>The Last Factor<a class="headerlink" href="#the-last-factor" title="Permalink to this headline">#</a></h3>
+<p>Only by introducing more information into the factor graph can inference extract more precise marginal belief estimates for each of the variables.
+A final piece of information added to this graph is a factor directly relating <code class="docutils literal notranslate"><span class="pre">x3</span></code> with <code class="docutils literal notranslate"><span class="pre">x0</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">addFactor</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x3&quot;</span><span class="p">,</span> <span class="s2">&quot;x0&quot;</span><span class="p">],</span> <span class="n">LinearRelative</span><span class="p">(</span><span class="n">Normal</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+
+<span class="c1"># let&#39;s wait to make sure all nodes were added</span>
+<span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">result_id</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pay close attention to what this last factor means in terms of the probability density traces shown in the previous figure.
+The trace for <code class="docutils literal notranslate"><span class="pre">x3</span></code> has two major modes, one that overlaps with <code class="docutils literal notranslate"><span class="pre">x0,</span> <span class="pre">x1</span></code> near 0 and a second mode further to the left at -40.
+The last factor introduces a shift <code class="docutils literal notranslate"><span class="pre">LinearRelative(Normal(40,1))</span></code> which essentially aligns the left most mode of <code class="docutils literal notranslate"><span class="pre">x3</span></code> back onto <code class="docutils literal notranslate"><span class="pre">x0</span></code>.</p>
+</section>
+</section>
+<section id="solve-the-graph">
+<h2>Solve the Graph<a class="headerlink" href="#solve-the-graph" title="Permalink to this headline">#</a></h2>
+<p>Global inference over the full graph can now be triggered.
+Again, we use <code class="docutils literal notranslate"><span class="pre">solveSession</span></code> to trigger the final solve in the NavAbility platform.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solve_request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">solveSession</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;running solve...&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This last factor forces a mode selection through consensus.
+By doing global inference, the new information obtained in <code class="docutils literal notranslate"><span class="pre">x3</span></code> will be equally propagated to <code class="docutils literal notranslate"><span class="pre">x2</span></code> where only one of the two modes will remain.  Let’s look at the factor graph again:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># click the generated graphic to link to the NavAbiltiy WebApp visualization</span>
+<span class="n">GraphVizApp</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/icra-2-nongaussian_39_0.png" src="../../_images/icra-2-nongaussian_39_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wait until solve completes</span>
+<span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">solve_request</span><span class="p">],</span> <span class="n">maxSeconds</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+
+<span class="c1"># click the generated graphic to link to the NavAbiltiy WebApp visualization</span>
+<span class="n">MapVizApp</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/icra-2-nongaussian_40_0.png" src="../../_images/icra-2-nongaussian_40_0.png" />
+</div>
+</div>
+<section id="re-solve-to-ensure-stable-solution">
+<h3>Re-solve to ensure Stable Solution<a class="headerlink" href="#re-solve-to-ensure-stable-solution" title="Permalink to this headline">#</a></h3>
+<p>Resolving will demonstrate a stable solution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solve_request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">solveSession</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;running solve...&#39;</span><span class="p">)</span>
+<span class="c1"># wait until solve completes</span>
+<span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">solve_request</span><span class="p">],</span> <span class="n">maxSeconds</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+<span class="c1"># click the generated graphic to link to the NavAbiltiy WebApp visualization</span>
+<span class="n">MapVizApp</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/icra-2-nongaussian_42_0.png" src="../../_images/icra-2-nongaussian_42_0.png" />
+</div>
+</div>
+<p>The resulting posterior marginal beliefs over all the system variables are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variables</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ls</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variables in graph: </span><span class="si">{</span><span class="n">variables</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">ppes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">v</span><span class="p">:</span> <span class="p">(</span><span class="k">await</span> <span class="n">getVariable</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span><span class="o">.</span><span class="n">ppes</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">suggested</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variables</span>
+    <span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ppes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-wheels-did-slip">
+<h3>The Wheels Did Slip!<a class="headerlink" href="#the-wheels-did-slip" title="Permalink to this headline">#</a></h3>
+<p>Look, the resulting distance from <code class="docutils literal notranslate"><span class="pre">x1</span></code> to <code class="docutils literal notranslate"><span class="pre">x2</span></code> with all the data available turns out to be 10 units.  This is much less than the 60 units measured by the encoder.  This means the SLIP-MODE case survived, and no-slip case disappeard.</p>
+<p>This example here is constructed in such a way that when all data is considered together a clear answer can be extracted.  In real situations, the beliefs could be more nuanced – which is all the more reason to consider non-Gaussian estimation which permanently keeps track of the nuanced features hidden in the data!</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<p>It is important to note that although this tutorial ends with all marginal beliefs having near Gaussian shape and are unimodal, that the package supports multi-modal belief estimates during both the prediction and global inference processes.</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">#</a></h2>
+<p>The next tutorial looks at weakly observable (a.k.a. missing / insufficient data, or underdetermined) situations where all Gaussian measurements result in highly non-Gaussian and multi-modal posterior estimates.</p>
+<section id="case-study-marine-surface-navigation">
+<h3>Case Study: Marine Surface Navigation<a class="headerlink" href="#case-study-marine-surface-navigation" title="Permalink to this headline">#</a></h3>
+<p>Furthermore, this tutorial has practical value.  For example, NavAbility developed a GPS-denied navigation technique for marine surface vehicles whereby consecutive radar sweeps are correlated for extracting odometry measurements.  These correlations, as it turns out, are non-Gaussian and on many occasions and exhibit multi-modal behavior similar to the tutorial illustrated above.</p>
+<p><strong>Real World Non-Gaussian Odometry Measurement</strong></p>
+<p>The left image below shows two consecutive <code class="docutils literal notranslate"><span class="pre">360</span> <span class="pre">degree</span></code> radar sweeps from a marine surface vehicle.  The right-hand image shows a slice from the dense correlation map on the <code class="docutils literal notranslate"><span class="pre">SpecialEuclidean(2)</span></code> manifold when looking for the best alignment between the two radar sweeps – notice the non-Gaussian / multi-modal behavior!  This type of non-Gaussian measurement can readily be used in the NavAbility and Caesar.jl solver system.  See the <a class="reference external" href="https://www.navability.io/applications/marine/">NavAbility Marine Surface Navigation Case Study page</a> for more details.</p>
+<p><img alt="Marine Appl Ex" src="http://www.navability.io/wp-content/uploads/2022/04/MarineRadarAlignFigure-1024x485-1.png" /></p>
+<p><a class="reference external" href="https://www.navability.io/applications/marine/">Link to the Marine Application Example</a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python/navability-sdk"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="icra-1-simple.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tutorial 1: Creating and Solving Factor Graphs</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="icra-3-rangeonly.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tutorial 3: Insufficient Data (2D Range-only)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By NavAbility Inc.<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
