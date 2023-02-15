@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 # Comprehensive example: https://github.com/executablebooks/jupyter-book/blob/master/docs/_config.yml
 
-title: NavAbilitySDK.py Documentation
+title: NavAbility ICRA2022 Tutorials
 author: NavAbility Inc.
 logo: logo.png
 
@@ -22,7 +22,7 @@ latex:
 
 # Information about where the book exists on the web
 repository:
-  url: https://navability.github.io/NavAbilitySDK.py/  # Online location of your book
+  url: https://github.com/NavAbility/BinderNotebooks/  # Online location of your book
   path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
