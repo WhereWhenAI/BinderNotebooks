@@ -6,9 +6,9 @@ root: index
 parts:
 - caption: Python SDK
   chapters:
-  - file: icra-1-simple
-  - file: icra-2-nongaussian
-  - file: icra-3-rangeonly
-  - file: icra-4-contradictorydata
+  - file: python/navability-sdk/icra-1-simple
+  - file: python/navability-sdk/icra-2-nongaussian
+  - file: python/navability-sdk/icra-3-rangeonly
+  - file: python/navability-sdk/icra-4-contradictorydata
 
 
