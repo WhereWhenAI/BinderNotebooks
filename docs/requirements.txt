@@ -1,0 +1,8 @@
+jupyter-book
+matplotlib
+numpy
+navabilitysdk
+sphinx-inline-tabs
+sphinx-examples
+sphinx-proof
+sphinx-hoverxref

@@ -1,0 +1,14 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+parts:
+- caption: Python SDK
+  chapters:
+  - file: python/navability-sdk/icra-1-simple
+  - file: python/navability-sdk/icra-2-nongaussian
+  - file: python/navability-sdk/icra-3-rangeonly
+  - file: python/navability-sdk/icra-4-contradictorydata
+
+
