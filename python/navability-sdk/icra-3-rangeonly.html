@@ -895,11 +895,6 @@ Transfer navigation aides <strong>outdoor-to-indoor</strong> in construction or 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Client(userId=guest@navability.io, robotId=SDKpy_0a6e, sessionId=Tutorial3_53e1)&gt;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -975,10 +970,7 @@ Transfer navigation aides <strong>outdoor-to-indoor</strong> in construction or 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://app.navability.io/cloud/graph/?userId=guest@navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1&amp;variableStartsWith
-</pre></div>
-</div>
-<p><a class="reference external" href="https://app.navability.io/cloud/graph/?userId=guest&#64;navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1&amp;variableStartsWith"><img alt="Navigate to Factor Graph" src="http://www.navability.io/wp-content/uploads/2022/03/factor_graph.png" /></a></p>
+<img alt="../../_images/icra-3-rangeonly_17_0.png" src="../../_images/icra-3-rangeonly_17_0.png" />
 </div>
 </div>
 <p>Click the generated button above to see the factor graph via the NavAbility web App, which shows the structure between variables and factors.</p>
@@ -995,14 +987,6 @@ Transfer navigation aides <strong>outdoor-to-indoor</strong> in construction or 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;client&#39;: OrderedDict([(&#39;userId&#39;, &#39;guest@navability.io&#39;), (&#39;robotId&#39;, &#39;SDKpy_0a6e&#39;), (&#39;sessionId&#39;, &#39;Tutorial3_53e1&#39;)])}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running solve...
-</pre></div>
-</div>
-</div>
 </div>
 <p>A set of tools are provided by the RoMEPlotting packages to show the numerical values contained in the factor graph solution.</p>
 <p>First look at the two landmark positions <code class="docutils literal notranslate"><span class="pre">:l1</span></code>, <code class="docutils literal notranslate"><span class="pre">:l2</span></code> at <code class="docutils literal notranslate"><span class="pre">(10.0,30)</span></code>, <code class="docutils literal notranslate"><span class="pre">(30.0,-30)</span></code> respectively.</p>
@@ -1014,10 +998,7 @@ Transfer navigation aides <strong>outdoor-to-indoor</strong> in construction or 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://app.navability.io/cloud/map/?userId=guest@navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1
-</pre></div>
-</div>
-<p><a class="reference external" href="https://app.navability.io/cloud/map/?userId=guest&#64;navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1"><img alt="Navigate to Factor Graph" src="http://www.navability.io/wp-content/uploads/2022/03/geometric_map.png" /></a></p>
+<img alt="../../_images/icra-3-rangeonly_22_0.png" src="../../_images/icra-3-rangeonly_22_0.png" />
 </div>
 </div>
 <section id="first-location-is-bi-modal-after-solve">
@@ -1031,10 +1012,7 @@ Transfer navigation aides <strong>outdoor-to-indoor</strong> in construction or 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://app.navability.io/cloud/map/?userId=guest@navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1
-</pre></div>
-</div>
-<p><a class="reference external" href="https://app.navability.io/cloud/map/?userId=guest&#64;navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1"><img alt="Navigate to Factor Graph" src="http://www.navability.io/wp-content/uploads/2022/03/geometric_map.png" /></a></p>
+<img alt="../../_images/icra-3-rangeonly_24_0.png" src="../../_images/icra-3-rangeonly_24_0.png" />
 </div>
 </div>
 <p>Note, the first ‘robot’ positon in this localization and mapping problem is not associated with by a prior factor of any kind.  The initial position could have been anywhere, but the two range measurements to known landmarks limited the uncertainty as shown in the plot above.</p>
@@ -1050,10 +1028,7 @@ Transfer navigation aides <strong>outdoor-to-indoor</strong> in construction or 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://app.navability.io/cloud/map/?userId=guest@navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1
-</pre></div>
-</div>
-<p><a class="reference external" href="https://app.navability.io/cloud/map/?userId=guest&#64;navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1"><img alt="Navigate to Factor Graph" src="http://www.navability.io/wp-content/uploads/2022/03/geometric_map.png" /></a></p>
+<img alt="../../_images/icra-3-rangeonly_27_0.png" src="../../_images/icra-3-rangeonly_27_0.png" />
 </div>
 </div>
 <p>Notice how <code class="docutils literal notranslate"><span class="pre">:l3</span></code>’s location belief (i.e. surveying/mapping) forms a ring around the only available measurement to <code class="docutils literal notranslate"><span class="pre">:l3</span></code> from <code class="docutils literal notranslate"><span class="pre">:x0</span></code>.  A unimodal solution for <code class="docutils literal notranslate"><span class="pre">:l3</span></code> <strong>does not exist</strong>.  In conventional linear modeling, we might say the system is <a class="reference external" href="https://en.wikipedia.org/wiki/Invertible_matrix">singular</a>.</p>
@@ -1116,19 +1091,7 @@ Transfer navigation aides <strong>outdoor-to-indoor</strong> in construction or 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adding new variable x1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adding variable vertex l4, not yet in the session
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adding new variable x2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://app.navability.io/cloud/graph/?userId=guest@navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1&amp;variableStartsWith
-</pre></div>
-</div>
-<p><a class="reference external" href="https://app.navability.io/cloud/graph/?userId=guest&#64;navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1&amp;variableStartsWith"><img alt="Navigate to Factor Graph" src="http://www.navability.io/wp-content/uploads/2022/03/factor_graph.png" /></a></p>
+<img alt="../../_images/icra-3-rangeonly_32_0.png" src="../../_images/icra-3-rangeonly_32_0.png" />
 </div>
 </div>
 <p><strong>Note</strong>, the distance traveled could be any combination of accrued direction and speeds, however, a straight line Gaussian error model is used to keep the visual presentation of this example as simple as possible.</p>
@@ -1138,14 +1101,6 @@ Transfer navigation aides <strong>outdoor-to-indoor</strong> in construction or 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">solveSession</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">result_id</span><span class="p">],</span> <span class="n">maxSeconds</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;running solve...&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;client&#39;: OrderedDict([(&#39;userId&#39;, &#39;guest@navability.io&#39;), (&#39;robotId&#39;, &#39;SDKpy_0a6e&#39;), (&#39;sessionId&#39;, &#39;Tutorial3_53e1&#39;)])}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running solve...
 </pre></div>
 </div>
 </div>
@@ -1161,10 +1116,7 @@ Transfer navigation aides <strong>outdoor-to-indoor</strong> in construction or 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://app.navability.io/cloud/map/?userId=guest@navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1
-</pre></div>
-</div>
-<p><a class="reference external" href="https://app.navability.io/cloud/map/?userId=guest&#64;navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1"><img alt="Navigate to Factor Graph" src="http://www.navability.io/wp-content/uploads/2022/03/geometric_map.png" /></a></p>
+<img alt="../../_images/icra-3-rangeonly_36_0.png" src="../../_images/icra-3-rangeonly_36_0.png" />
 </div>
 </div>
 <p>Notice how the robot trajectory has 2+ hypotheses,</p>
@@ -1190,10 +1142,7 @@ Transfer navigation aides <strong>outdoor-to-indoor</strong> in construction or 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://app.navability.io/cloud/map/?userId=guest@navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1
-</pre></div>
-</div>
-<p><a class="reference external" href="https://app.navability.io/cloud/map/?userId=guest&#64;navability.io&amp;robotStartsWith=SDKpy_0a6e&amp;sessionStartsWith=Tutorial3_53e1"><img alt="Navigate to Factor Graph" src="http://www.navability.io/wp-content/uploads/2022/03/geometric_map.png" /></a></p>
+<img alt="../../_images/icra-3-rangeonly_39_0.png" src="../../_images/icra-3-rangeonly_39_0.png" />
 </div>
 </div>
 <p>The two “free” beacons/landmarks <code class="docutils literal notranslate"><span class="pre">:l3,:l4</span></code> still have several modes each, implying insufficient data to constrain either to a conventional unimodal belief.</p>
@@ -1210,17 +1159,6 @@ Transfer navigation aides <strong>outdoor-to-indoor</strong> in construction or 
 <span class="n">result_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">solveSession</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">result_id</span><span class="p">],</span> <span class="n">maxSeconds</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;running solve...&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adding new variable x3
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adding new variable x4
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;client&#39;: OrderedDict([(&#39;userId&#39;, &#39;guest@navability.io&#39;), (&#39;robotId&#39;, &#39;SDKpy_0a6e&#39;), (&#39;sessionId&#39;, &#39;Tutorial3_53e1&#39;)])}
 </pre></div>
 </div>
 </div>

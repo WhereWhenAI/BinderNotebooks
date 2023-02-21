@@ -709,11 +709,6 @@ Our solution aleady provides a library of standard variables and factors that re
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Client(userId=guest@navability.io, robotId=SDKpy_8cc5, sessionId=Tutorial1_e505)&gt;
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="variables-and-factors">
@@ -728,11 +723,6 @@ Relative factors between variables are probabilistic models that capture the lik
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added x0 with result ID </span><span class="si">{</span><span class="n">result_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="c1"># Wait for it to be loaded.</span>
 <span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">result_id</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Added x0 with result ID 01GS9Z6T0H5YCW8JEKKTV05S5H
 </pre></div>
 </div>
 </div>
@@ -754,11 +744,6 @@ This unary factor is taken as a matrix <code class="docutils literal notranslate
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Added factor with result ID 01GS9Z6XP9BFR8Z6ENQ1VYZ3KP
-</pre></div>
-</div>
-</div>
 </div>
 <p>We can look at the factor graph we have so far using the generated link to the NavAbilityApp, and note the variable node <code class="docutils literal notranslate"><span class="pre">x0</span></code> and prior factor node <code class="docutils literal notranslate"><span class="pre">x0f1</span></code>.</p>
 <div class="cell docutils container">
@@ -769,10 +754,7 @@ This unary factor is taken as a matrix <code class="docutils literal notranslate
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://app.navability.io/cloud/graph/?userId=guest@navability.io&amp;robotStartsWith=SDKpy_8cc5&amp;sessionStartsWith=Tutorial1_e505&amp;variableStartsWith
-</pre></div>
-</div>
-<p><a class="reference external" href="https://app.navability.io/cloud/graph/?userId=guest&#64;navability.io&amp;robotStartsWith=SDKpy_8cc5&amp;sessionStartsWith=Tutorial1_e505&amp;variableStartsWith"><img alt="Navigate to Factor Graph" src="http://www.navability.io/wp-content/uploads/2022/03/factor_graph.png" /></a></p>
+<img alt="../../_images/icra-1-simple_12_0.png" src="../../_images/icra-1-simple_12_0.png" />
 </div>
 </div>
 <p>The prior is now connected to the variable, <code class="docutils literal notranslate"><span class="pre">x0</span></code>, but it is not initialized yet. Automatic initialization of variables depends on how the factor graph model is constructed. So far, <code class="docutils literal notranslate"><span class="pre">x0</span></code> has not been initialized.</p>
@@ -798,14 +780,6 @@ Similarly to the prior we added above, we use a <code class="docutils literal no
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Added x1 with result ID 01GS9Z71EA8A278C0T9WW4K1WK
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Added factor with result ID 01GS9Z722W801JNRW9DXKFHYMD
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="solving">
@@ -820,14 +794,6 @@ The default solver will perform non-parametric inference/state-estimation over o
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;client&#39;: OrderedDict([(&#39;userId&#39;, &#39;guest@navability.io&#39;), (&#39;robotId&#39;, &#39;SDKpy_8cc5&#39;), (&#39;sessionId&#39;, &#39;Tutorial1_e505&#39;)])}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running solve...
-</pre></div>
-</div>
-</div>
 </div>
 <p>While the solve is processing, let’s look at the factor graph structure again:</p>
 <div class="cell docutils container">
@@ -838,10 +804,7 @@ The default solver will perform non-parametric inference/state-estimation over o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://app.navability.io/cloud/graph/?userId=guest@navability.io&amp;robotStartsWith=SDKpy_8cc5&amp;sessionStartsWith=Tutorial1_e505
-</pre></div>
-</div>
-<p><a class="reference external" href="https://app.navability.io/cloud/graph/?userId=guest&#64;navability.io&amp;robotStartsWith=SDKpy_8cc5&amp;sessionStartsWith=Tutorial1_e505"><img alt="Navigate to Factor Graph" src="http://www.navability.io/wp-content/uploads/2022/03/factor_graph.png" /></a></p>
+<img alt="../../_images/icra-1-simple_20_0.png" src="../../_images/icra-1-simple_20_0.png" />
 </div>
 </div>
 <p>A <em>slightly</em> more the mathy explination.  A factor graph represents the factorization of the overall joint probability belief function that describes your system.
@@ -866,23 +829,7 @@ This factorization allows us to solve the optimization (a.k.a. inference) proble
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">solve_request</span><span class="p">],</span> <span class="n">maxSeconds</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># click the generated graphic to link to the NavAbiltiy WebApp visualization</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">MapVizApp</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/navability/services/utils.py:62,</span> in <span class="ni">MapVizApp</span><span class="nt">(client, variableStartsWith)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">if</span> <span class="n">variableStartsWith</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="n">geometry_vis_link</span> <span class="o">=</span> <span class="n">geometry_vis_link</span> <span class="o">+</span> <span class="s2">&quot;&amp;variableStartsWith&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">62</span>     <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">variableStartsWith</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>         <span class="n">geometry_vis_link</span> <span class="o">=</span> <span class="n">geometry_vis_link</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="n">variableStartsWith</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="nb">print</span><span class="p">(</span><span class="n">geometry_vis_link</span><span class="p">)</span>
-
-<span class="ne">TypeError</span>: object of type &#39;NoneType&#39; has no len()
-</pre></div>
-</div>
+<img alt="../../_images/icra-1-simple_23_0.png" src="../../_images/icra-1-simple_23_0.png" />
 </div>
 </div>
 <p>In the App visualization, use the SHOW BELIEF button to see the underlying variable estimates in more detail.</p>

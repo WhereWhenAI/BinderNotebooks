@@ -479,17 +479,38 @@ The SDK doesn’t work because GQL requires async calls. We need to find a way t
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ass</span> <span class="o">=</span> <span class="n">NavAbilityAsyncHttpsClient</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">ass</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">QueryOptions</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">90</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">ass</span> <span class="o">=</span> <span class="n">NavAbilityAsyncHttpsClient</span><span class="p">()</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">ass</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">QueryOptions</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>
 
-<span class="nn">Input In [2],</span> in <span class="ni">NavAbilityAsyncHttpsClient.__init__</span><span class="nt">(self, url)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://api.d1.navability.io&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-<span class="ne">----&gt; </span><span class="mi">4</span>     <span class="n">transport</span> <span class="o">=</span> <span class="n">AIOHTTPTransport</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+<span class="nn">Input In [89],</span> in <span class="ni">NavAbilityAsyncHttpsClient.query</span><span class="nt">(self, options)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">QueryOptions</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="c1"># loop = asyncio.get_running_loop()</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">18</span>     <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_async_query</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
 
-<span class="ne">NameError</span>: name &#39;AIOHTTPTransport&#39; is not defined
+<span class="nn">File /usr/lib/python3.8/asyncio/base_events.py:592,</span> in <span class="ni">BaseEventLoop.run_until_complete</span><span class="nt">(self, future)</span>
+<span class="g g-Whitespace">    </span><span class="mi">581</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Run until the Future is done.</span>
+<span class="g g-Whitespace">    </span><span class="mi">582</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">583</span><span class="sd"> If the argument is a coroutine, it is wrapped in a Task.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">589</span><span class="sd"> Return the Future&#39;s result, or raise its exception.</span>
+<span class="g g-Whitespace">    </span><span class="mi">590</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_closed</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">592</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_running</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">594</span> <span class="n">new_task</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">futures</span><span class="o">.</span><span class="n">isfuture</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">595</span> <span class="n">future</span> <span class="o">=</span> <span class="n">tasks</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="n">future</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File /usr/lib/python3.8/asyncio/base_events.py:552,</span> in <span class="ni">BaseEventLoop._check_running</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span> <span class="k">def</span> <span class="nf">_check_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">551</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">552</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;This event loop is already running&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">553</span>     <span class="k">if</span> <span class="n">events</span><span class="o">.</span><span class="n">_get_running_loop</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">554</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">555</span>             <span class="s1">&#39;Cannot run the event loop while another loop is running&#39;</span><span class="p">)</span>
+
+<span class="ne">RuntimeError</span>: This event loop is already running
 </pre></div>
 </div>
 </div>

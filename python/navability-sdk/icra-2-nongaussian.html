@@ -796,11 +796,6 @@ The variable nodes are identified by <code class="docutils literal notranslate">
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Added x0 with result ID 01GS9Z7FCWB7HE5F00XEDGACZ4
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="prior-factor-euclidean-1">
@@ -830,10 +825,7 @@ This unary factor is taken as a <code class="docutils literal notranslate"><span
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://app.navability.io/cloud/graph/?userId=guest@navability.io&amp;robotStartsWith=SDKpy_aed&amp;sessionStartsWith=Tutorial2_516&amp;variableStartsWith
-</pre></div>
-</div>
-<p><a class="reference external" href="https://app.navability.io/cloud/graph/?userId=guest&#64;navability.io&amp;robotStartsWith=SDKpy_aed&amp;sessionStartsWith=Tutorial2_516&amp;variableStartsWith"><img alt="Navigate to Factor Graph" src="http://www.navability.io/wp-content/uploads/2022/03/factor_graph.png" /></a></p>
+<img alt="../../_images/icra-2-nongaussian_10_0.png" src="../../_images/icra-2-nongaussian_10_0.png" />
 </div>
 </div>
 <p>The topological graph plot obtained from the NavAbility App above shows the two node factor graph, one variable and one prior factor.  This example uses graph-based automatic variable initialization which was discussed in ICRA 2022 Tutorial 1.</p>
@@ -851,11 +843,6 @@ This unary factor is taken as a <code class="docutils literal notranslate"><span
 
 <span class="c1"># P(Z | :x1 - :x0 ) where Z ~ Normal(10,1)</span>
 <span class="n">result_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">addFactor</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x0&quot;</span><span class="p">,</span> <span class="s2">&quot;x1&quot;</span><span class="p">],</span> <span class="n">LinearRelative</span><span class="p">(</span><span class="n">Normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Added x1 with result ID 01GS9Z7KP6XFVMHNK5FXNTJH82
 </pre></div>
 </div>
 </div>
@@ -877,14 +864,6 @@ Remember the first time executions are slow given the required code compilation,
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;client&#39;: OrderedDict([(&#39;userId&#39;, &#39;guest@navability.io&#39;), (&#39;robotId&#39;, &#39;SDKpy_aed&#39;), (&#39;sessionId&#39;, &#39;Tutorial2_516&#39;)])}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>running solve...
-</pre></div>
-</div>
-</div>
 </div>
 <p>Once the solve completes, we can plot the results using the NavAbility WebApp</p>
 <div class="cell docutils container">
@@ -898,23 +877,7 @@ Remember the first time executions are slow given the required code compilation,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [9],</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">await</span> <span class="n">waitForCompletion</span><span class="p">(</span><span class="n">navability_client</span><span class="p">,</span> <span class="p">[</span><span class="n">solve_request</span><span class="p">],</span> <span class="n">maxSeconds</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># click the generated graphic to link to the NavAbiltiy WebApp visualization</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">MapVizApp</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/navability/services/utils.py:62,</span> in <span class="ni">MapVizApp</span><span class="nt">(client, variableStartsWith)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">if</span> <span class="n">variableStartsWith</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="n">geometry_vis_link</span> <span class="o">=</span> <span class="n">geometry_vis_link</span> <span class="o">+</span> <span class="s2">&quot;&amp;variableStartsWith&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">62</span>     <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">variableStartsWith</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>         <span class="n">geometry_vis_link</span> <span class="o">=</span> <span class="n">geometry_vis_link</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">+</span> <span class="n">variableStartsWith</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="nb">print</span><span class="p">(</span><span class="n">geometry_vis_link</span><span class="p">)</span>
-
-<span class="ne">TypeError</span>: object of type &#39;NoneType&#39; has no len()
-</pre></div>
-</div>
+<img alt="../../_images/icra-2-nongaussian_17_0.png" src="../../_images/icra-2-nongaussian_17_0.png" />
 </div>
 </div>
 <p><strong>TIP</strong>, click the “SHOW DISTRIBUTIONS” button in the NavAbility App geometric visualization page to see the belief estimates of solved variables.  You can also “HIDE PPES” parametric point estimates.</p>
