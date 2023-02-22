@@ -2,7 +2,7 @@
 
 Welcome to our demo Binder Notebooks! 
 
-We're building out examples here (more to follow soon) that demonstrate how to use the NavAbility SDKs in Python and Julia. 
+A few tutorials from NavAbility to demonstrate how to use the NavAbility SDKs in Python and Julia. 
 
 ## NavAbility Tutorials Docs
 
