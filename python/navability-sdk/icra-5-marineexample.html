@@ -1,0 +1,1345 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it &#8212; NavAbility ICRA2022 Tutorials</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">NavAbility ICRA2022 Tutorials</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python SDK
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="icra-1-simple.html">
+   Tutorial 1: Creating and Solving Factor Graphs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="icra-2-nongaussian.html">
+   Tutorial 2: Non-Gaussian Measurements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="icra-3-rangeonly.html">
+   Tutorial 3: Insufficient Data (2D Range-only)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="icra-4-contradictorydata.html">
+   Tutorial 4, Leveraging (Contradictory) Prior Data
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/NavAbility/BinderNotebooks/main?urlpath=tree/docs/python/navability-sdk/icra-5-marineexample.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/NavAbility/BinderNotebooks/"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/NavAbility/BinderNotebooks//issues/new?title=Issue%20on%20page%20%2Fpython/navability-sdk/icra-5-marineexample.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/python/navability-sdk/icra-5-marineexample.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#youtube-walk-through-video">
+     YouTube Walk Through Video
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problem-statement">
+     Problem Statement
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-value-broader-application">
+     The Value (Broader Application)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-marine-slam-solution">
+     A Marine SLAM Solution
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-data-is-alive-and-available">
+     The Data is Alive and Available
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#icra-survey">
+   ICRA Survey
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-necessary-packages">
+     Loading Necessary Packages
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-only-data-userid-examples-navability-io">
+     Read-only Data, userId=
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       examples@navability.io
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#robot-session-marineasv-icra2022-tutorial5-1000">
+       Robot:Session =&gt; MarineASV_ICRA2022:Tutorial5_1000
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#variables-in-session">
+       Variables in Session?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#are-the-variables-initialized">
+       Are the Variables Initialized?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#is-the-graph-solved">
+       Is the Graph solved?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#large-data-blobs">
+     Large Data Blobs
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#list-data-entries">
+       List Data Entries
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#look-at-camera-data">
+       Look at Camera Data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#look-at-radar-data">
+       Look at Radar Data
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#as-pointcloud">
+         As PointCloud
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#radar-to-image">
+         Radar To Image
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-more-data">
+       Adding More Data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#register-a-navability-user-login">
+       Register a NavAbility User Login
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-map-with-without-gps">
+     Building the Map with/without GPS
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factors-in-the-session">
+       Factors in the Session
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aligning-radar-pointcloud-maps">
+       Aligning Radar PointCloud Maps
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bring-your-own-visualizer-byov">
+     Bring your own Visualizer (BYOV)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#basic-awareness-app-geometric-visualization">
+       Basic awareness, App Geometric Visualization
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#navability-api-vs-sdk">
+       NavAbility API vs SDK
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#next-steps">
+     Next Steps
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#navability-marine-application-example">
+       NavAbility Marine Application Example
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#query-spatial-relationships">
+       Query spatial relationships,
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-boats-in-camera-data">
+       Find Boats in Camera Data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#track-boats-in-the-radar-data">
+       Track Boats in the Radar Data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#combining-camera-radar-info-back-into-factor-graph">
+       Combining Camera / Radar info Back into Factor Graph
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#youtube-walk-through-video">
+     YouTube Walk Through Video
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     Introduction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problem-statement">
+     Problem Statement
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-value-broader-application">
+     The Value (Broader Application)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-marine-slam-solution">
+     A Marine SLAM Solution
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-data-is-alive-and-available">
+     The Data is Alive and Available
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#icra-survey">
+   ICRA Survey
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-necessary-packages">
+     Loading Necessary Packages
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-only-data-userid-examples-navability-io">
+     Read-only Data, userId=
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       examples@navability.io
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#robot-session-marineasv-icra2022-tutorial5-1000">
+       Robot:Session =&gt; MarineASV_ICRA2022:Tutorial5_1000
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#variables-in-session">
+       Variables in Session?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#are-the-variables-initialized">
+       Are the Variables Initialized?
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#is-the-graph-solved">
+       Is the Graph solved?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#large-data-blobs">
+     Large Data Blobs
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#list-data-entries">
+       List Data Entries
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#look-at-camera-data">
+       Look at Camera Data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#look-at-radar-data">
+       Look at Radar Data
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#as-pointcloud">
+         As PointCloud
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#radar-to-image">
+         Radar To Image
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-more-data">
+       Adding More Data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#register-a-navability-user-login">
+       Register a NavAbility User Login
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-map-with-without-gps">
+     Building the Map with/without GPS
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factors-in-the-session">
+       Factors in the Session
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aligning-radar-pointcloud-maps">
+       Aligning Radar PointCloud Maps
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bring-your-own-visualizer-byov">
+     Bring your own Visualizer (BYOV)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#basic-awareness-app-geometric-visualization">
+       Basic awareness, App Geometric Visualization
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#navability-api-vs-sdk">
+       NavAbility API vs SDK
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#next-steps">
+     Next Steps
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#navability-marine-application-example">
+       NavAbility Marine Application Example
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#query-spatial-relationships">
+       Query spatial relationships,
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-boats-in-camera-data">
+       Find Boats in Camera Data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#track-boats-in-the-radar-data">
+       Track Boats in the Radar Data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#combining-camera-radar-info-back-into-factor-graph">
+       Combining Camera / Radar info Back into Factor Graph
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="tutorial-5-less-time-wrangling-data-more-time-understanding-actioning-it">
+<h1>Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it<a class="headerlink" href="#tutorial-5-less-time-wrangling-data-more-time-understanding-actioning-it" title="Permalink to this headline">#</a></h1>
+<p><strong>API Version: JuliaLang <a class="reference external" href="http://NavAbilitySDK.py">NavAbilitySDK.py</a></strong></p>
+<section id="youtube-walk-through-video">
+<h2>YouTube Walk Through Video<a class="headerlink" href="#youtube-walk-through-video" title="Permalink to this headline">#</a></h2>
+<p>A walk through of this video has been prepared and can be found at:</p>
+<p><a class="reference external" href="https://youtu.be/4kKTIAOqEfU"><img alt="Tutorial 5 Walk Through" src="https://img.youtube.com/vi/4kKTIAOqEfU/0.jpg" /></a></p>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>NavAbility developed a case study for marine vehicle navigation which direclty addresses GPS-denied navigation from radar point cloud data.  The underlying SLAM solver is supported by NavAbility as open core software.  Links to the open source code and deeper discussions are available by following links from <a class="reference external" href="https://www.navability.io/2022/02/04/application-example-marine-vehicle-mapping-systems-for-collision-avoidance-and-planning/">Marine Case Study Blog post</a>.</p>
+<p>This tutorial shows how interaction is done with ease and efficiency.  This tutorial builds on previous tutorials that show how and why factor graphs are so important, as well other tutorials showing some of the robust (non-Gaussian) solver features that are available when building multi-sensor navigation and mapping systems that must combine challenging, ambiguous, and contradictory measurements and data cues.</p>
+</section>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Permalink to this headline">#</a></h2>
+<p>Marine operations in harbor and populated river environments will see increased autonomy with major benefits for safety and efficacy, but the navigational environment poses a number of vital challenges.  In developing and testing proof-of-concept systems, four very specific challenges arose:</p>
+<ul class="simple">
+<li><p>GPS data can occasionaly drop out, specifically when maneuvering under bridges or between tall structures;</p></li>
+<li><p>Various perception sensors each perform really well with reasonable availability for seeing obstacles or aiding navigation, but no one sensor alone provides a home run solution;</p></li>
+<li><p>Practical development testing an operations produces large amounts of recorded robot data, but the data quickly becomes overwhelming and difficult to action;</p></li>
+<li><p>How to share / integrate measurement data and navigation between agents (human or autonomous), as well as with shore side operations;</p></li>
+</ul>
+</section>
+<section id="the-value-broader-application">
+<h2>The Value (Broader Application)<a class="headerlink" href="#the-value-broader-application" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>By being able to rapidly develop advanced multi-sensor perception, localization, and mapping ideas drastically reduces the cost and risk of introducing highly focussed autonomy/safety features into existing operations.</p></li>
+<li><p>Access to both raw data and actionable SLAM results provides a major platform for machine learning tasks, such as training predictors that have either geometric of semantic relevance – e.g. learning vehicle behaviors or better classifiers.</p></li>
+<li><p>Access to a temporal/spatial database allows various sessions to be brought together with NavAbility’s map merging technology.</p></li>
+</ul>
+</section>
+<section id="a-marine-slam-solution">
+<h2>A Marine SLAM Solution<a class="headerlink" href="#a-marine-slam-solution" title="Permalink to this headline">#</a></h2>
+<p>The marine case study shows benefits value of persistent simultaneous localization and mapping SLAM solutions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Raw</span> <span class="n">Data</span> <span class="o">-------------&gt;</span> <span class="n">SLAM</span> <span class="n">Solving</span> <span class="o">----------------&gt;</span> <span class="n">Action</span> <span class="o">/</span> <span class="n">Visualize</span> <span class="n">Results</span>
+              <span class="o">^</span>                              <span class="o">|</span>
+              <span class="o">|</span>                              <span class="o">|</span>
+        <span class="n">Enhance</span> <span class="n">the</span>  <span class="o">&lt;---------------</span> <span class="n">Deeper</span> <span class="n">processing</span> <span class="n">of</span> <span class="n">data</span>
+        <span class="n">factor</span> <span class="n">graph</span>                    <span class="k">with</span> <span class="n">previous</span> <span class="n">results</span>
+</pre></div>
+</div>
+</section>
+<section id="the-data-is-alive-and-available">
+<h2>The Data is Alive and Available<a class="headerlink" href="#the-data-is-alive-and-available" title="Permalink to this headline">#</a></h2>
+<p>Shows a piece of the boat trajectory.  The interactive code below will help visualize the trajectory of the target boat, which was estimated from our vehicle regardless of whether GPS was working or not!</p>
+<p>The first piece of code shows:</p>
+<ul class="simple">
+<li><p>the factor graph exists</p></li>
+<li><p>the size of the factor graph</p></li>
+<li><p>which variables and factors are in the factor graph</p></li>
+</ul>
+<p>In the sections hereafter, you will learn more about which data is being stored in each of these graph nodes, how the SLAM solution is processed and why that is crucial for multisensor navigation, and how to immediately interact the data on the platform for youself.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="icra-survey">
+<h1>ICRA Survey<a class="headerlink" href="#icra-survey" title="Permalink to this headline">#</a></h1>
+<p>Thanks for doing our tutorials! We really want to make sure this is valuable for you.</p>
+<p>This <a class="reference external" href="https://docs.google.com/forms/d/e/1FAIpQLScQiZHguPN7YP18-VhfbqqQw621EswuBIJZj191x70CPrCiKw/viewform?vc=0&amp;c=0&amp;w=1&amp;flr=0">quick 2 minute survey</a> will help us improve them for next year’s workshop.</p>
+<section id="loading-necessary-packages">
+<h2>Loading Necessary Packages<a class="headerlink" href="#loading-necessary-packages" title="Permalink to this headline">#</a></h2>
+<p>Load the necessary packages or accesing the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # ONLY IF REQUIRED, Install a pip package in the current Jupyter kernel</span>
+<span class="c1"># import sys</span>
+<span class="c1"># !{sys.executable} -m pip install navabilitysdk</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">navability.entities</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">navability.services</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">PILImage</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="read-only-data-userid-examples-navability-io">
+<h2>Read-only Data, userId=<code class="docutils literal notranslate"><span class="pre">examples&#64;navability.io</span></code><a class="headerlink" href="#read-only-data-userid-examples-navability-io" title="Permalink to this headline">#</a></h2>
+<section id="robot-session-marineasv-icra2022-tutorial5-1000">
+<h3>Robot:Session =&gt; MarineASV_ICRA2022:Tutorial5_1000<a class="headerlink" href="#robot-session-marineasv-icra2022-tutorial5-1000" title="Permalink to this headline">#</a></h3>
+<p>Point the SDK context to the right location, but selecting the User:Robot:Session</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">NavAbilityHttpsClient</span><span class="p">()</span>
+
+<span class="c1"># you need a unique userId:robotId, and can keep using that across all tutorials</span>
+<span class="n">userId</span> <span class="o">=</span> <span class="s2">&quot;examples@navability.io&quot;</span>
+<span class="n">robotId</span> <span class="o">=</span> <span class="s2">&quot;MarineASV_ICRA2022&quot;</span>
+<span class="n">sessionId</span> <span class="o">=</span> <span class="s2">&quot;Tutorial5_1000&quot;</span>
+
+<span class="n">context</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span> <span class="n">robotId</span><span class="p">,</span> <span class="n">sessionId</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="variables-in-session">
+<h3>Variables in Session?<a class="headerlink" href="#variables-in-session" title="Permalink to this headline">#</a></h3>
+<p>To get a sense of scale of the dataset, we can look at the number of variables under this session:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lbls</span> <span class="o">=</span> <span class="k">await</span> <span class="n">listVariables</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lbls</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;x284&#39;, &#39;x274&#39;, &#39;x279&#39;, &#39;x259&#39;, &#39;x254&#39;, &#39;x249&#39;, &#39;x234&#39;, &#39;x244&#39;, &#39;x239&#39;, &#39;x0&#39;, &#39;x4&#39;, &#39;x9&#39;, &#39;x14&#39;, &#39;x19&#39;, &#39;x24&#39;, &#39;x29&#39;, &#39;x34&#39;, &#39;x69&#39;, &#39;x74&#39;, &#39;x44&#39;, &#39;x39&#39;, &#39;x49&#39;, &#39;x59&#39;, &#39;x54&#39;, &#39;x64&#39;, &#39;x79&#39;, &#39;x84&#39;, &#39;x89&#39;, &#39;x94&#39;, &#39;x99&#39;, &#39;x104&#39;, &#39;x109&#39;, &#39;x114&#39;, &#39;x119&#39;, &#39;x124&#39;, &#39;x129&#39;, &#39;x169&#39;, &#39;x164&#39;, &#39;x134&#39;, &#39;x139&#39;, &#39;x144&#39;, &#39;x154&#39;, &#39;x149&#39;, &#39;x159&#39;, &#39;x174&#39;, &#39;x179&#39;, &#39;x189&#39;, &#39;x194&#39;, &#39;x184&#39;, &#39;x199&#39;, &#39;x204&#39;, &#39;x209&#39;, &#39;x214&#39;, &#39;x219&#39;, &#39;x224&#39;, &#39;x229&#39;, &#39;x269&#39;, &#39;x264&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can pick any one of the variables and look a little closer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v284</span> <span class="o">=</span> <span class="k">await</span> <span class="n">getVariable</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="s1">&#39;x284&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v284</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Variable(label=x284,variableType=RoME.Pose2,tags=[&#39;VARIABLE&#39;, &#39;POSE&#39;])&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="are-the-variables-initialized">
+<h3>Are the Variables Initialized?<a class="headerlink" href="#are-the-variables-initialized" title="Permalink to this headline">#</a></h3>
+<p>Initialization in this context means whether any numerical values exist, which may or may not yet have been solved by the SLAM solver.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v284</span><span class="o">.</span><span class="n">solverData</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">initialized</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="is-the-graph-solved">
+<h3>Is the Graph solved?<a class="headerlink" href="#is-the-graph-solved" title="Permalink to this headline">#</a></h3>
+<p>Solved in this context means whether a SLAM solution has been performed on this particular variable.  Note in this case the variable is initialized but not solved.  The Marine application data could be used in various different ways, which in turn produce different requirements on how the SLAM solved are processed for a particular factor graph.  The NavAbility Platform allows for various customization options that depend on each of the factor graph sessions or environment being solved,</p>
+<ul class="simple">
+<li><p>more rapid solving of the youngest variables,</p></li>
+<li><p>loop-closure intensive solving for producing a new map,</p></li>
+<li><p>stitching together multiple robot or session data into a combined map,</p></li>
+<li><p>etc.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v284</span><span class="o">.</span><span class="n">solverData</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">solvedCount</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="large-data-blobs">
+<h2>Large Data Blobs<a class="headerlink" href="#large-data-blobs" title="Permalink to this headline">#</a></h2>
+<p>The solution supports storing large data blobs, which might be associated with zero or more variables in a factor graph.</p>
+<section id="list-data-entries">
+<h3>List Data Entries<a class="headerlink" href="#list-data-entries" title="Permalink to this headline">#</a></h3>
+<p>Data blobs can be associated with a variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x9_de</span> <span class="o">=</span> <span class="k">await</span> <span class="n">listBlobEntries</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="s2">&quot;x9&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x9_de</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IMG_CENTER_x11_21827
+IMG_CENTER_x11_21829
+IMG_CENTER_x11_21837
+IMG_CENTER_x13_21867
+IMG_CENTER_x9_21806
+IMG_CENTER_x12_21851
+IMG_CENTER_x12_21848
+IMG_CENTER_x13_21862
+IMG_CENTER_x11_21840
+IMG_CENTER_x12_21852
+IMG_CENTER_x13_21863
+IMG_CENTER_x11_21826
+IMG_CENTER_x12_21842
+IMG_CENTER_x10_21813
+IMG_CENTER_x10_21817
+IMG_CENTER_x9_21797
+IMG_CENTER_x10_21818
+IMG_CENTER_x10_21819
+IMG_CENTER_x11_21838
+IMG_CENTER_x10_21816
+IMG_CENTER_x10_21822
+IMG_CENTER_x11_21831
+IMG_CENTER_x11_21833
+radar_mkd_full
+IMG_CENTER_x9_21809
+IMG_CENTER_x13_21861
+IMG_CENTER_x9_21799
+IMG_CENTER_x10_21821
+radar_img
+IMG_CENTER_x11_21839
+radar_pointcloud
+IMG_CENTER_x12_21841
+IMG_CENTER_x13_21860
+IMG_CENTER_x12_21849
+IMG_CENTER_x9_21803
+IMG_CENTER_x9_21802
+IMG_CENTER_x12_21854
+IMG_CENTER_x12_21853
+IMG_CENTER_x10_21815
+IMG_CENTER_x10_21823
+IMG_CENTER_x12_21850
+IMG_CENTER_x13_21865
+IMG_CENTER_x9_21805
+IMG_CENTER_x10_21811
+IMG_CENTER_x12_21847
+IMG_CENTER_x13_21858
+IMG_CENTER_x13_21866
+IMG_CENTER_x11_21830
+IMG_CENTER_x9_21800
+IMG_CENTER_x9_21796
+IMG_CENTER_x11_21834
+IMG_CENTER_x12_21855
+IMG_CENTER_x12_21843
+IMG_CENTER_x10_21812
+IMG_CENTER_x11_21835
+IMG_CENTER_x9_21801
+IMG_CENTER_x9_21804
+IMG_CENTER_x13_21857
+IMG_CENTER_x11_21832
+IMG_CENTER_x9_21798
+IMG_CENTER_x12_21845
+IMG_CENTER_x13_21859
+IMG_CENTER_x11_21836
+IMG_CENTER_x12_21856
+IMG_CENTER_x12_21846
+IMG_CENTER_x9_21810
+IMG_CENTER_x10_21814
+IMG_CENTER_x10_21820
+IMG_CENTER_x13_21864
+IMG_CENTER_x13_21869
+IMG_CENTER_x9_21808
+IMG_CENTER_x12_21844
+IMG_CENTER_x11_21828
+IMG_CENTER_x13_21868
+IMG_CENTER_x10_21824
+IMG_CENTER_x9_21807
+IMG_CENTER_x10_21825
+IMG_CENTER_x13_21870
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="look-at-camera-data">
+<h3>Look at Camera Data<a class="headerlink" href="#look-at-camera-data" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imd</span> <span class="o">=</span> <span class="k">await</span> <span class="n">getBlob</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">userId</span><span class="p">,</span> <span class="n">x9_de</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<span class="n">IMG_PATH</span><span class="o">=</span><span class="s1">&#39;pyconvertimg.jpg&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">IMG_PATH</span><span class="p">,</span> <span class="s1">&#39;bw&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">imd</span><span class="p">)</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">PILImage</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">IMG_PATH</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">IMG_PATH</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/icra-5-marineexample_20_0.jpg" src="../../_images/icra-5-marineexample_20_0.jpg" />
+</div>
+</div>
+</section>
+<section id="look-at-radar-data">
+<h3>Look at Radar Data<a class="headerlink" href="#look-at-radar-data" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rde</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">((</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="s1">&#39;radar&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">label</span><span class="p">),</span> <span class="n">x9_de</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rd</span> <span class="ow">in</span> <span class="n">rde</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BlobEntry(label=radar_mkd_full,label=radar_mkd_full,id=6751eb5f-0475-4c24-a4e7-383109e59346)&gt;
+&lt;BlobEntry(label=radar_img,label=radar_img,id=c8b00c48-4659-4437-b1e6-743b0c4be5bb)&gt;
+&lt;BlobEntry(label=radar_pointcloud,label=radar_pointcloud,id=82a12130-1e4e-46d0-992a-7cac5708b7ab)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="as-pointcloud">
+<h4>As PointCloud<a class="headerlink" href="#as-pointcloud" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rde</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">((</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="s1">&#39;radar_pointcloud&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">label</span><span class="p">),</span> <span class="n">x9_de</span><span class="p">)</span>
+<span class="n">bE</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">rde</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bE</span><span class="p">)</span>
+    
+<span class="n">radar_blob</span> <span class="o">=</span> <span class="k">await</span> <span class="n">getBlob</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">userId</span><span class="p">,</span> <span class="n">bE</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<span class="n">radar</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">radar_blob</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of points: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">radar</span><span class="p">))</span>
+<span class="n">radar</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BlobEntry(label=radar_pointcloud,label=radar_pointcloud,id=82a12130-1e4e-46d0-992a-7cac5708b7ab)&gt;
+Number of points:  643
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-35.46592, 855.8134],
+ [-119.02202, 484.61365],
+ [216.1004, -631.304],
+ [-158.5043, 830.0785],
+ [-584.9095, -359.17392],
+ [220.96115, 580.76575],
+ [241.97108, 534.7688],
+ [182.0528, -661.80194],
+ [216.6408, 520.7562],
+ [131.30196, -597.5646]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="radar-to-image">
+<h4>Radar To Image<a class="headerlink" href="#radar-to-image" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rde</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">((</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="s1">&#39;radar_img&#39;</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">label</span><span class="p">),</span> <span class="n">x9_de</span><span class="p">)</span>
+<span class="n">bE</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">rde</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bE</span><span class="p">)</span>
+
+<span class="n">imd</span> <span class="o">=</span> <span class="k">await</span> <span class="n">getBlob</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">context</span><span class="o">.</span><span class="n">userId</span><span class="p">,</span> <span class="n">bE</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<span class="n">IMG_PATH</span><span class="o">=</span><span class="s1">&#39;pyconvertimg.jpg&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">IMG_PATH</span><span class="p">,</span> <span class="s1">&#39;bw&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">imd</span><span class="p">)</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">PILImage</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">IMG_PATH</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">IMG_PATH</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;BlobEntry(label=radar_img,label=radar_img,id=c8b00c48-4659-4437-b1e6-743b0c4be5bb)&gt;
+</pre></div>
+</div>
+<img alt="../../_images/icra-5-marineexample_26_1.jpg" src="../../_images/icra-5-marineexample_26_1.jpg" />
+</div>
+</div>
+</section>
+</section>
+<section id="adding-more-data">
+<h3>Adding More Data<a class="headerlink" href="#adding-more-data" title="Permalink to this headline">#</a></h3>
+<p>Once you have a piece of data that is pertinant for storage, you can simply add it</p>
+<blockquote>
+<div><p>Note these adds won’t work since userId=<code class="docutils literal notranslate"><span class="pre">examples&#64;navability.io</span></code> has public read-only access, but requires authentication for write access.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRITING CHANGES WONT WORK WITHOUT AUTH for userId examples@navability.io</span>
+<span class="n">unique_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">addBlob</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="s2">&quot;radar_pointcloud&quot;</span><span class="p">,</span> <span class="n">cloudDens</span><span class="p">)</span>
+<span class="n">mime</span> <span class="o">=</span> <span class="s2">&quot;application/json/octet-stream&quot;</span>
+<span class="n">addBlobEntry</span><span class="p">(</span> 
+    <span class="n">client</span><span class="p">,</span> 
+    <span class="n">context</span><span class="p">,</span> 
+    <span class="s2">&quot;x9&quot;</span><span class="p">,</span> 
+    <span class="n">unique_id</span><span class="p">,</span> 
+    <span class="s2">&quot;radar_pointcloud&quot;</span><span class="p">,</span> 
+    <span class="n">mime</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The platform allows users to have various security/access levels as a particular application requires.</p>
+</section>
+<section id="register-a-navability-user-login">
+<h3>Register a NavAbility User Login<a class="headerlink" href="#register-a-navability-user-login" title="Permalink to this headline">#</a></h3>
+<p>Please contact NavAbility on <a class="reference external" href="https://join.slack.com/t/caesarjl/shared_invite/zt-ucs06bwg-y2tEbddwX1vR18MASnOLsw">Slack</a> or <a class="reference external" href="mailto:info&#37;&#52;&#48;navability&#46;io">info<span>&#64;</span>navability<span>&#46;</span>io</a> for write, solving, and other early access features given to a specific <code class="docutils literal notranslate"><span class="pre">userId</span></code>.</p>
+</section>
+</section>
+<section id="building-the-map-with-without-gps">
+<h2>Building the Map with/without GPS<a class="headerlink" href="#building-the-map-with-without-gps" title="Permalink to this headline">#</a></h2>
+<p>A major emphasis of this tutorial is highlighting the importance of robust navigation from all sensors and data sources, while knowing that each sensor has it’s own problems and is unlikely to work perfectly 100% of the time – e.g. GPS fails under bridges when being jammed, cameras fail when the sun or reflections are in the field of view, and radar cross section detections and shadows can vary significatnly.  By embracing non-Gaussian / multimodal data processing challenges head on, we are able to add significant value to the ease and robustness with which the necessary localization / mapping / tracking solutions that need to be developed.</p>
+<p><a class="reference external" href="https://www.navability.io/2022/02/04/application-example-marine-vehicle-mapping-systems-for-collision-avoidance-and-planning/"><img alt="Marine Appl Ex" src="http://www.navability.io/wp-content/uploads/2022/04/MarineRadarAlignFigure-1024x485-1.png" /></a></p>
+<p>Pull two radar sweeps and show a slice of the correlation maps from ScatterAlignPose2 – discuss.</p>
+<section id="factors-in-the-session">
+<h3>Factors in the Session<a class="headerlink" href="#factors-in-the-session" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">listFactors</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">context</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;x0x4f_843d&#39;, &#39;x0f_ca58&#39;, &#39;x279x284f1&#39;, &#39;x274x279f1&#39;, &#39;x269x274f1&#39;, &#39;x264x269f1&#39;, &#39;x259x264f1&#39;, &#39;x254x259f1&#39;, &#39;x249x254f1&#39;, &#39;x244x249f1&#39;, &#39;x239x244f1&#39;, &#39;x234x239f1&#39;, &#39;x229x234f1&#39;, &#39;x224x229f1&#39;, &#39;x219x224f1&#39;, &#39;x214x219f1&#39;, &#39;x209x214f1&#39;, &#39;x204x209f1&#39;, &#39;x199x204f1&#39;, &#39;x194x199f1&#39;, &#39;x189x194f1&#39;, &#39;x184x189f1&#39;, &#39;x179x184f1&#39;, &#39;x174x179f1&#39;, &#39;x169x174f1&#39;, &#39;x164x169f1&#39;, &#39;x159x164f1&#39;, &#39;x154x159f1&#39;, &#39;x149x154f1&#39;, &#39;x144x149f1&#39;, &#39;x139x144f1&#39;, &#39;x134x139f1&#39;, &#39;x129x134f1&#39;, &#39;x124x129f1&#39;, &#39;x119x124f1&#39;, &#39;x114x119f1&#39;, &#39;x109x114f1&#39;, &#39;x104x109f1&#39;, &#39;x99x104f1&#39;, &#39;x94x99f1&#39;, &#39;x89x94f1&#39;, &#39;x84x89f1&#39;, &#39;x79x84f1&#39;, &#39;x74x79f1&#39;, &#39;x69x74f1&#39;, &#39;x64x69f1&#39;, &#39;x59x64f1&#39;, &#39;x54x59f1&#39;, &#39;x49x54f1&#39;, &#39;x44x49f1&#39;, &#39;x39x44f1&#39;, &#39;x34x39f1&#39;, &#39;x29x34f1&#39;, &#39;x24x29f1&#39;, &#39;x19x24f1&#39;, &#39;x14x19f1&#39;, &#39;x9x14f1&#39;, &#39;x4x9f1&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can look a bit closer at one of the radar odometry factors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_x4x9</span> <span class="o">=</span> <span class="k">await</span> <span class="n">getFactor</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="s2">&quot;x4x9f1&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f_x4x9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Factor(label=x4x9f1,variables=[&#39;x4&#39;, &#39;x9&#39;])&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The results from the line above shows a “data” value which in this particular case is a <code class="docutils literal notranslate"><span class="pre">base64</span></code> encoded string.  That field contains the data for a <code class="docutils literal notranslate"><span class="pre">Caesar.ScatterAlignPose2</span></code> factor – also shows by:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_x4x9</span><span class="o">.</span><span class="n">fnctype</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ScatterAlignPose2&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="aligning-radar-pointcloud-maps">
+<h3>Aligning Radar PointCloud Maps<a class="headerlink" href="#aligning-radar-pointcloud-maps" title="Permalink to this headline">#</a></h3>
+<p>To learn more, the factors as well as SLAM solver code is all open-source at <a class="reference external" href="https://github.com/JuliaRobotics/Caesar.jl"><code class="docutils literal notranslate"><span class="pre">JuliaRobotics/Caesar.jl</span></code></a>.  See the <a class="reference external" href="https://github.com/JuliaRobotics/Caesar.jl/blob/b80370542e3dc958e66e2a2c022ad8e09aea2373/src/images/ScatterAlignPose2.jl#L112-L157"><code class="docutils literal notranslate"><span class="pre">ScatterAlignPose2</span></code> factor code</a></p>
+</section>
+</section>
+<section id="bring-your-own-visualizer-byov">
+<h2>Bring your own Visualizer (BYOV)<a class="headerlink" href="#bring-your-own-visualizer-byov" title="Permalink to this headline">#</a></h2>
+<p>We expect most applications already have a dedicated visualizer techonology choice, and this is good.  The localization and mapping processing here is focussed on providing robust and distributed <strong>results which can be incorporated into existing visualization frameworks</strong>.</p>
+<section id="basic-awareness-app-geometric-visualization">
+<h3>Basic awareness, App Geometric Visualization<a class="headerlink" href="#basic-awareness-app-geometric-visualization" title="Permalink to this headline">#</a></h3>
+<p>To make this tutorial accessible, we show the Marine Case study data with the NavAbility App, which provides a basic 2D visualizer to get a basic understanding of the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MapVizApp</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="navability-api-vs-sdk">
+<h3>NavAbility API vs SDK<a class="headerlink" href="#navability-api-vs-sdk" title="Permalink to this headline">#</a></h3>
+<p>The NavAbilitySDKs are wrappers on the standardized NavAbility API.  This allows simplified multilanguage support with a variety of equivalent SDKs.  The API vs SDK separation also allows separate of concerns, relating to performance code, distributed design, and language specific features/quirks.  The separation also greatly improves code legacy support and deprecation cycles.  Finally, the API vs. SDK approach allows significantly more technology-agnostic design.</p>
+<p>To highlight how the API is used, users can try the following query which lists the sessions associated with a particular robot:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="p">{</span>
+  <span class="n">users</span><span class="p">(</span><span class="n">where</span><span class="p">:</span> <span class="p">{</span><span class="nb">id</span><span class="p">:</span> <span class="s2">&quot;examples@navability.io&quot;</span><span class="p">})</span> <span class="p">{</span>
+		<span class="n">robots</span> <span class="p">{</span>
+      <span class="nb">id</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run this query in the Playground at <a class="reference external" href="https://api.navability.io/"><code class="docutils literal notranslate"><span class="pre">api.navability.io</span></code></a>.</p>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">#</a></h2>
+<p>If you have interest in NavAbility and what our technology can do, please reach out via <a class="reference external" href="https://join.slack.com/t/caesarjl/shared_invite/zt-ucs06bwg-y2tEbddwX1vR18MASnOLsw">Slack</a> or <span class="xref myst">info&#64;navability.io</span>.</p>
+<section id="navability-marine-application-example">
+<h3>NavAbility Marine Application Example<a class="headerlink" href="#navability-marine-application-example" title="Permalink to this headline">#</a></h3>
+<p>See the <a class="reference external" href="https://www.navability.io/2022/02/04/application-example-marine-vehicle-mapping-systems-for-collision-avoidance-and-planning/">NavAbility Marine Application Example</a> for more details.</p>
+</section>
+<section id="query-spatial-relationships">
+<h3>Query spatial relationships,<a class="headerlink" href="#query-spatial-relationships" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>What is here there, or nearby</p></li>
+<li><p>What might see this target</p></li>
+</ul>
+</section>
+<section id="find-boats-in-camera-data">
+<h3>Find Boats in Camera Data<a class="headerlink" href="#find-boats-in-camera-data" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Pull image data,</p></li>
+<li><p>Process camera image with user side needs,</p></li>
+</ul>
+</section>
+<section id="track-boats-in-the-radar-data">
+<h3>Track Boats in the Radar Data<a class="headerlink" href="#track-boats-in-the-radar-data" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="combining-camera-radar-info-back-into-factor-graph">
+<h3>Combining Camera / Radar info Back into Factor Graph<a class="headerlink" href="#combining-camera-radar-info-back-into-factor-graph" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Dummy stub for uploading data back (not allowed under guest, please sign up for write access to a session)</p></li>
+<li><p>Pull all this data into the factor graph and ask for a new solve</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python/navability-sdk"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By NavAbility Inc.<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
