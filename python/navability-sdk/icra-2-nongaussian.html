@@ -1,30 +1,36 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Tutorial 2: Non-Gaussian Measurements &#8212; NavAbility ICRA2022 Tutorials</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
@@ -37,18 +43,20 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script src="../../_static/tabs.js"></script>
     <script src="../../_static/js/hoverxref.js"></script>
     <script src="../../_static/js/tooltipster.bundle.min.js"></script>
@@ -57,7 +65,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -67,61 +75,282 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/navability-sdk/icra-2-nongaussian';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Tutorial 3: Insufficient Data (2D Range-only)" href="icra-3-rangeonly.html" />
     <link rel="prev" title="Tutorial 1: Creating and Solving Factor Graphs" href="icra-1-simple.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
         
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-1-simple.html">
+                        Tutorial 1: Creating and Solving Factor Graphs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Tutorial 2: Non-Gaussian Measurements
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-3-rangeonly.html">
+                        Tutorial 3: Insufficient Data (2D Range-only)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-4-contradictorydata.html">
+                        Tutorial 4, Leveraging (Contradictory) Prior Data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-5-marineexample.html">
+                        Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
-      <img src="../../_static/logo.png" class="logo" alt="logo">
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-      <h1 class="site-logo" id="site-title">NavAbility ICRA2022 Tutorials</h1>
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-1-simple.html">
+                        Tutorial 1: Creating and Solving Factor Graphs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Tutorial 2: Non-Gaussian Measurements
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-3-rangeonly.html">
+                        Tutorial 3: Insufficient Data (2D Range-only)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-4-contradictorydata.html">
+                        Tutorial 4, Leveraging (Contradictory) Prior Data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-5-marineexample.html">
+                        Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -130,594 +359,356 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python SDK
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python SDK</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="icra-1-simple.html">
-   Tutorial 1: Creating and Solving Factor Graphs
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Tutorial 2: Non-Gaussian Measurements
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="icra-3-rangeonly.html">
-   Tutorial 3: Insufficient Data (2D Range-only)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="icra-4-contradictorydata.html">
-   Tutorial 4, Leveraging (Contradictory) Prior Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="icra-5-marineexample.html">
-   Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="icra-1-simple.html">Tutorial 1: Creating and Solving Factor Graphs</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tutorial 2: Non-Gaussian Measurements</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="icra-3-rangeonly.html">Tutorial 3: Insufficient Data (2D Range-only)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="icra-4-contradictorydata.html">Tutorial 4, Leveraging (Contradictory) Prior Data</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="icra-5-marineexample.html">Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it</a></li>
+
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/NavAbility/BinderNotebooks/main?urlpath=tree/docs/python/navability-sdk/icra-2-nongaussian.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
+  <ul class="dropdown-menu">
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/NavAbility/BinderNotebooks/"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/NavAbility/BinderNotebooks/" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
-<span class="headerbtn__text-container">repository</span>
+<span class="btn__text-container">repository</span>
 </a>
-
-      </li>
+</a>
       
-      <li>
-        <a href="https://github.com/NavAbility/BinderNotebooks//issues/new?title=Issue%20on%20page%20%2Fpython/navability-sdk/icra-2-nongaussian.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
+      <li><a href="https://github.com/NavAbility/BinderNotebooks//issues/new?title=Issue%20on%20page%20%2Fpython/navability-sdk/icra-2-nongaussian.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Open an issue"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-lightbulb"></i>
   </span>
-<span class="headerbtn__text-container">open issue</span>
+<span class="btn__text-container">open issue</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/python/navability-sdk/icra-2-nongaussian.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../../_sources/python/navability-sdk/icra-2-nongaussian.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Tutorial 2: Non-Gaussian Measurements
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#youtube-walk-through-video">
-     YouTube Walk Through Video
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#applications-with-ambiguous-data">
-     Applications with Ambiguous Data
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#a-basic-1d-example">
-       A Basic 1D Example
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#signatures-used">
-       Signatures Used
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ambiguous-data-example">
-     Ambiguous Data Example
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#icra-survey">
-   ICRA Survey
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#starting-a-1d-factor-graph">
-     Starting a 1D Factor Graph
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#variable-continuousscalar">
-       Variable,
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         ContinuousScalar
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#prior-factor-euclidean-1">
-       Prior Factor, (Euclidean(1))
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualizing-graph-topology">
-       Visualizing Graph Topology
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#next-variable-and-relative-factor">
-       Next Variable and Relative Factor
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualizing-the-variable-probability-belief">
-       Visualizing the Variable Probability Belief
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#non-gaussian-measurement-to-x2">
-     Non-Gaussian Measurement to
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       x2
-      </span>
-     </code>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#non-parametric-measurements">
-       Non-parametric Measurements
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mixture-distribution-on-next-relative-factor-wheel-slip">
-       Mixture Distribution on Next Relative Factor (Wheel Slip)
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#each-mode-mean-slip-or-no-slip">
-       Each Mode Mean Slip or No-Slip
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-variable-x3">
-     Adding Variable
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       x3
-      </span>
-     </code>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-last-factor">
-       The Last Factor
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solve-the-graph">
-     Solve the Graph
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#re-solve-to-ensure-stable-solution">
-       Re-solve to ensure Stable Solution
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-wheels-did-slip">
-       The Wheels Did Slip!
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#conclusion">
-     Conclusion
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#next-steps">
-     Next Steps
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-study-marine-surface-navigation">
-       Case Study: Marine Surface Navigation
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Tutorial 2: Non-Gaussian Measurements</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Tutorial 2: Non-Gaussian Measurements
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#youtube-walk-through-video">
-     YouTube Walk Through Video
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#applications-with-ambiguous-data">
-     Applications with Ambiguous Data
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#a-basic-1d-example">
-       A Basic 1D Example
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#signatures-used">
-       Signatures Used
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ambiguous-data-example">
-     Ambiguous Data Example
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#icra-survey">
-   ICRA Survey
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#starting-a-1d-factor-graph">
-     Starting a 1D Factor Graph
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#variable-continuousscalar">
-       Variable,
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         ContinuousScalar
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#prior-factor-euclidean-1">
-       Prior Factor, (Euclidean(1))
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualizing-graph-topology">
-       Visualizing Graph Topology
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#next-variable-and-relative-factor">
-       Next Variable and Relative Factor
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualizing-the-variable-probability-belief">
-       Visualizing the Variable Probability Belief
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#non-gaussian-measurement-to-x2">
-     Non-Gaussian Measurement to
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       x2
-      </span>
-     </code>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#non-parametric-measurements">
-       Non-parametric Measurements
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mixture-distribution-on-next-relative-factor-wheel-slip">
-       Mixture Distribution on Next Relative Factor (Wheel Slip)
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#each-mode-mean-slip-or-no-slip">
-       Each Mode Mean Slip or No-Slip
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-variable-x3">
-     Adding Variable
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       x3
-      </span>
-     </code>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-last-factor">
-       The Last Factor
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solve-the-graph">
-     Solve the Graph
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#re-solve-to-ensure-stable-solution">
-       Re-solve to ensure Stable Solution
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-wheels-did-slip">
-       The Wheels Did Slip!
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#conclusion">
-     Conclusion
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#next-steps">
-     Next Steps
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-study-marine-surface-navigation">
-       Case Study: Marine Surface Navigation
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tutorial 2: Non-Gaussian Measurements</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 2: Non-Gaussian Measurements
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#youtube-walk-through-video">
+     YouTube Walk Through Video
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#applications-with-ambiguous-data">
+     Applications with Ambiguous Data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-basic-1d-example">
+       A Basic 1D Example
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#signatures-used">
+       Signatures Used
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ambiguous-data-example">
+     Ambiguous Data Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#icra-survey">
+   ICRA Survey
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#starting-a-1d-factor-graph">
+     Starting a 1D Factor Graph
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#variable-continuousscalar">
+       Variable,
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         ContinuousScalar
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prior-factor-euclidean-1">
+       Prior Factor, (Euclidean(1))
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizing-graph-topology">
+       Visualizing Graph Topology
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#next-variable-and-relative-factor">
+       Next Variable and Relative Factor
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizing-the-variable-probability-belief">
+       Visualizing the Variable Probability Belief
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-gaussian-measurement-to-x2">
+     Non-Gaussian Measurement to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       x2
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#non-parametric-measurements">
+       Non-parametric Measurements
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mixture-distribution-on-next-relative-factor-wheel-slip">
+       Mixture Distribution on Next Relative Factor (Wheel Slip)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#each-mode-mean-slip-or-no-slip">
+       Each Mode Mean Slip or No-Slip
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-variable-x3">
+     Adding Variable
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       x3
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-last-factor">
+       The Last Factor
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solve-the-graph">
+     Solve the Graph
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#re-solve-to-ensure-stable-solution">
+       Re-solve to ensure Stable Solution
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-wheels-did-slip">
+       The Wheels Did Slip!
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conclusion">
+     Conclusion
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#next-steps">
+     Next Steps
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#case-study-marine-surface-navigation">
+       Case Study: Marine Surface Navigation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="tutorial-2-non-gaussian-measurements">
-<h1>Tutorial 2: Non-Gaussian Measurements<a class="headerlink" href="#tutorial-2-non-gaussian-measurements" title="Permalink to this headline">#</a></h1>
+<h1>Tutorial 2: Non-Gaussian Measurements<a class="headerlink" href="#tutorial-2-non-gaussian-measurements" title="Permalink to this heading">#</a></h1>
 <p><strong>API Version: Python <a class="reference external" href="http://NavAbilitySDK.py">NavAbilitySDK.py</a></strong></p>
 <section id="youtube-walk-through-video">
-<h2>YouTube Walk Through Video<a class="headerlink" href="#youtube-walk-through-video" title="Permalink to this headline">#</a></h2>
+<h2>YouTube Walk Through Video<a class="headerlink" href="#youtube-walk-through-video" title="Permalink to this heading">#</a></h2>
 <p>A walk through of this video has been prepared and can be found at:</p>
 <p><a class="reference external" href="https://youtu.be/kHZ_K9DEceY"><img alt="Tutorial 2 Walk Through" src="https://img.youtube.com/vi/kHZ_K9DEceY/0.jpg" /></a></p>
 </section>
 <section id="applications-with-ambiguous-data">
-<h2>Applications with Ambiguous Data<a class="headerlink" href="#applications-with-ambiguous-data" title="Permalink to this headline">#</a></h2>
+<h2>Applications with Ambiguous Data<a class="headerlink" href="#applications-with-ambiguous-data" title="Permalink to this heading">#</a></h2>
 <p>There are many, many ways in which non-Gaussian / ambiguous measurements occur, this tutorial will simply pick one common example to illustrate the basic concepts.  In short, measurements do not have to follow a unimodal bell curve (i.e. normal/Gaussian) but can instead introduce non-Gaussian beliefs.</p>
 <ul class="simple">
 <li><p>Localizing ground robots suffering <strong>wheel slip or getting stuck</strong> (rotary encoders),</p></li>
@@ -728,7 +719,7 @@ title="Print to PDF"
 <li><p>And many more.</p></li>
 </ul>
 <section id="a-basic-1d-example">
-<h3>A Basic 1D Example<a class="headerlink" href="#a-basic-1d-example" title="Permalink to this headline">#</a></h3>
+<h3>A Basic 1D Example<a class="headerlink" href="#a-basic-1d-example" title="Permalink to this heading">#</a></h3>
 <p>There are many, many ways in which non-Gaussian / ambiguous measurements occur, this tutorial will simply pick one common example to illustrate the basic concepts.  In short, measurements do not have to follow a unimodal bell curve (i.e. normal/Gaussian) but can instead introduce non-Gaussian beliefs.</p>
 <p>We ground the tutorial in an example: imagine a wheeled robot travelling along in a straight line, using wheel encoders to estimate the distance travelled.  There is, however, a quirk, from time to time the robot gets stuck on something and the wheels spin for a few rotations before progress continues.</p>
 <p><img alt="Tutorial 2 Img" src="https://github.com/NavAbility/BinderNotebooks/raw/main/static/icra-2/example-wheelslip.png" /></p>
@@ -738,17 +729,17 @@ title="Print to PDF"
 <p>The tutorial shows how multi-modal uncertainty can be introduced from non-Gaussian measurements, and how that is transmitted through the system.  We will build a factor graph that contains multi-modal belief as well as <code class="docutils literal notranslate"><span class="pre">Uniform</span></code> and <code class="docutils literal notranslate"><span class="pre">Rayleigh</span></code> distributions.  We can construct factor graph of heterogeneous data and let the joint inference find the best marginal posterior estimates on each of the desired variables in the factor graph.</p>
 </section>
 <section id="signatures-used">
-<h3>Signatures Used<a class="headerlink" href="#signatures-used" title="Permalink to this headline">#</a></h3>
+<h3>Signatures Used<a class="headerlink" href="#signatures-used" title="Permalink to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ContinuousScalar</span></code>, <code class="docutils literal notranslate"><span class="pre">Prior</span></code>, <code class="docutils literal notranslate"><span class="pre">LinearRelative</span></code>, <code class="docutils literal notranslate"><span class="pre">Mixture</span></code>, <code class="docutils literal notranslate"><span class="pre">Normal</span></code></p>
 </section>
 </section>
 <section id="ambiguous-data-example">
-<h2>Ambiguous Data Example<a class="headerlink" href="#ambiguous-data-example" title="Permalink to this headline">#</a></h2>
+<h2>Ambiguous Data Example<a class="headerlink" href="#ambiguous-data-example" title="Permalink to this heading">#</a></h2>
 <p>The first step is to load the <code class="docutils literal notranslate"><span class="pre">NavAbilitySDK</span></code> functionality and a few other library features,</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="icra-survey">
-<h1>ICRA Survey<a class="headerlink" href="#icra-survey" title="Permalink to this headline">#</a></h1>
+<h1>ICRA Survey<a class="headerlink" href="#icra-survey" title="Permalink to this heading">#</a></h1>
 <p>Thanks for doing our tutorials! We really want to make sure this is valuable for you.</p>
 <p>This <a class="reference external" href="https://docs.google.com/forms/d/e/1FAIpQLScQiZHguPN7YP18-VhfbqqQw621EswuBIJZj191x70CPrCiKw/viewform?vc=0&amp;c=0&amp;w=1&amp;flr=0">quick 2 minute survey</a> will help us improve them for next year’s workshop.</p>
 <div class="cell docutils container">
@@ -771,9 +762,9 @@ title="Print to PDF"
 </div>
 </div>
 <section id="starting-a-1d-factor-graph">
-<h2>Starting a 1D Factor Graph<a class="headerlink" href="#starting-a-1d-factor-graph" title="Permalink to this headline">#</a></h2>
+<h2>Starting a 1D Factor Graph<a class="headerlink" href="#starting-a-1d-factor-graph" title="Permalink to this heading">#</a></h2>
 <section id="variable-continuousscalar">
-<h3>Variable, <code class="docutils literal notranslate"><span class="pre">ContinuousScalar</span></code><a class="headerlink" href="#variable-continuousscalar" title="Permalink to this headline">#</a></h3>
+<h3>Variable, <code class="docutils literal notranslate"><span class="pre">ContinuousScalar</span></code><a class="headerlink" href="#variable-continuousscalar" title="Permalink to this heading">#</a></h3>
 <p>The first thing to do is setup a client-context to talk with the NavAbility Platform.
 The next step is to describe the inference problem with a graphical model by populating the factor graph with variable nodes.
 The variable nodes are identified by <code class="docutils literal notranslate"><span class="pre">String</span></code>s, namely <code class="docutils literal notranslate"><span class="pre">x0,</span> <span class="pre">x1,</span> <span class="pre">x2,</span> <span class="pre">x3</span></code>.</p>
@@ -804,7 +795,7 @@ The variable nodes are identified by <code class="docutils literal notranslate">
 </div>
 </section>
 <section id="prior-factor-euclidean-1">
-<h3>Prior Factor, (Euclidean(1))<a class="headerlink" href="#prior-factor-euclidean-1" title="Permalink to this headline">#</a></h3>
+<h3>Prior Factor, (Euclidean(1))<a class="headerlink" href="#prior-factor-euclidean-1" title="Permalink to this heading">#</a></h3>
 <p>Factor graphs are bipartite graphs with <code class="docutils literal notranslate"><span class="pre">factors</span></code> that act as mathematical structure between interacting <code class="docutils literal notranslate"><span class="pre">variables</span></code>.
 After adding node <code class="docutils literal notranslate"><span class="pre">x0</span></code>, a singleton factor of type <code class="docutils literal notranslate"><span class="pre">Prior</span></code> (which was defined by the user earlier) is ‘connected to’ variable node <code class="docutils literal notranslate"><span class="pre">x0</span></code>.
 This unary factor is taken as a <code class="docutils literal notranslate"><span class="pre">Normal</span></code> distribution with zero mean and a standard deviation of <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
@@ -820,7 +811,7 @@ This unary factor is taken as a <code class="docutils literal notranslate"><span
 <p><strong>Note</strong>, this example is using just <code class="docutils literal notranslate"><span class="pre">Prior</span></code>, which is a simplification for the sake of this tutorial.  Look out for on-manifold prior factors in other code examples.</p>
 </section>
 <section id="visualizing-graph-topology">
-<h3>Visualizing Graph Topology<a class="headerlink" href="#visualizing-graph-topology" title="Permalink to this headline">#</a></h3>
+<h3>Visualizing Graph Topology<a class="headerlink" href="#visualizing-graph-topology" title="Permalink to this heading">#</a></h3>
 <p>Visualization for the SDK interfaces is provided by the NavAbility WebApp, click the generated graphics to open the link:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -830,13 +821,13 @@ This unary factor is taken as a <code class="docutils literal notranslate"><span
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-2-nongaussian_10_0.png" src="../../_images/icra-2-nongaussian_10_0.png" />
+<img alt="../../_images/529509e8d092e858cfe21de0172f894a709ad2858d89c8211f931027e1060a8b.png" src="../../_images/529509e8d092e858cfe21de0172f894a709ad2858d89c8211f931027e1060a8b.png" />
 </div>
 </div>
 <p>The topological graph plot obtained from the NavAbility App above shows the two node factor graph, one variable and one prior factor.  This example uses graph-based automatic variable initialization which was discussed in ICRA 2022 Tutorial 1.</p>
 </section>
 <section id="next-variable-and-relative-factor">
-<h3>Next Variable and Relative Factor<a class="headerlink" href="#next-variable-and-relative-factor" title="Permalink to this headline">#</a></h3>
+<h3>Next Variable and Relative Factor<a class="headerlink" href="#next-variable-and-relative-factor" title="Permalink to this heading">#</a></h3>
 <p>Now let’s add a second variable <code class="docutils literal notranslate"><span class="pre">x1</span></code>, and connect it to <code class="docutils literal notranslate"><span class="pre">x0</span></code> with a <code class="docutils literal notranslate"><span class="pre">LinearRelative</span></code> factor.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -854,7 +845,7 @@ This unary factor is taken as a <code class="docutils literal notranslate"><span
 </div>
 </section>
 <section id="visualizing-the-variable-probability-belief">
-<h3>Visualizing the Variable Probability Belief<a class="headerlink" href="#visualizing-the-variable-probability-belief" title="Permalink to this headline">#</a></h3>
+<h3>Visualizing the Variable Probability Belief<a class="headerlink" href="#visualizing-the-variable-probability-belief" title="Permalink to this heading">#</a></h3>
 <p>The NavAbility WebApp allows visualization (plotting) of the belief state over any of the variable nodes.
 Remember the first time executions are slow given the required code compilation, and that future versions of these packages will use more precompilation to reduce first execution running cost.</p>
 <p>We first need to trigger a solve for the web application to update its belief estimates. We first make sure that the all tasks have completed, and then trigger a new solve.</p>
@@ -882,7 +873,7 @@ Remember the first time executions are slow given the required code compilation,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-2-nongaussian_17_0.png" src="../../_images/icra-2-nongaussian_17_0.png" />
+<img alt="../../_images/28ed80206cd9bac05d8d40bbd7e8a02d46fea693d76fe2f8d1ce198c126693fb.png" src="../../_images/28ed80206cd9bac05d8d40bbd7e8a02d46fea693d76fe2f8d1ce198c126693fb.png" />
 </div>
 </div>
 <p><strong>TIP</strong>, click the “SHOW DISTRIBUTIONS” button in the NavAbility App geometric visualization page to see the belief estimates of solved variables.  You can also “HIDE PPES” parametric point estimates.</p>
@@ -891,13 +882,13 @@ The predicted belief of <code class="docutils literal notranslate"><span class="
 </section>
 </section>
 <section id="non-gaussian-measurement-to-x2">
-<h2>Non-Gaussian Measurement to <code class="docutils literal notranslate"><span class="pre">x2</span></code><a class="headerlink" href="#non-gaussian-measurement-to-x2" title="Permalink to this headline">#</a></h2>
+<h2>Non-Gaussian Measurement to <code class="docutils literal notranslate"><span class="pre">x2</span></code><a class="headerlink" href="#non-gaussian-measurement-to-x2" title="Permalink to this heading">#</a></h2>
 <section id="non-parametric-measurements">
-<h3>Non-parametric Measurements<a class="headerlink" href="#non-parametric-measurements" title="Permalink to this headline">#</a></h3>
+<h3>Non-parametric Measurements<a class="headerlink" href="#non-parametric-measurements" title="Permalink to this heading">#</a></h3>
 <p><strong>Important Side Note</strong>: Thus far, this tutorial has used parametric noise models, but the solver can equally consume nonparametric measurements in factors.  These include kernel density estimates, intensity (heat) maps, and more.  To simplify introduction of non-Gaussian noise models, this tutorial will include the simplest form, namely mixture distributions.  A link to a fully non-parametric marine radar example is provided at the end of this tutorial.</p>
 </section>
 <section id="mixture-distribution-on-next-relative-factor-wheel-slip">
-<h3>Mixture Distribution on Next Relative Factor (Wheel Slip)<a class="headerlink" href="#mixture-distribution-on-next-relative-factor-wheel-slip" title="Permalink to this headline">#</a></h3>
+<h3>Mixture Distribution on Next Relative Factor (Wheel Slip)<a class="headerlink" href="#mixture-distribution-on-next-relative-factor-wheel-slip" title="Permalink to this heading">#</a></h3>
 <p>As the robot continues to drive from <code class="docutils literal notranslate"><span class="pre">x1</span></code> to <code class="docutils literal notranslate"><span class="pre">x2</span></code>, the robot software detects wheel slip has occurred.  Here then is the critical point, how should the next odometry measurement incorporate this ambiguous information.  First, we add the next <code class="docutils literal notranslate"><span class="pre">ContinuousScalar</span></code> variable <code class="docutils literal notranslate"><span class="pre">x2</span></code> as before.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -953,19 +944,19 @@ The predicted belief over <code class="docutils literal notranslate"><span class
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-2-nongaussian_25_0.png" src="../../_images/icra-2-nongaussian_25_0.png" />
+<img alt="../../_images/282cdbe798149128668009f8ad0ef31949f95315d8a70b96fbede1fb880b7e98.png" src="../../_images/282cdbe798149128668009f8ad0ef31949f95315d8a70b96fbede1fb880b7e98.png" />
 </div>
 </div>
 <p>Use the SHOW DISTRIBUTIONS button in the App visualization to see the underlying variable belief distribution estimates.</p>
 </section>
 <section id="each-mode-mean-slip-or-no-slip">
-<h3>Each Mode Mean Slip or No-Slip<a class="headerlink" href="#each-mode-mean-slip-or-no-slip" title="Permalink to this headline">#</a></h3>
+<h3>Each Mode Mean Slip or No-Slip<a class="headerlink" href="#each-mode-mean-slip-or-no-slip" title="Permalink to this heading">#</a></h3>
 <p>Notice the multi-modal belief in the marginal posterior belief of <code class="docutils literal notranslate"><span class="pre">x2</span></code>.  Also note that Kernel Density Estimate methods can appear to produce noisy belief density estimates.  While this does sometimes occur, it is harmless and has no impact on the accuracy of the mean point estimate produced for each mode in the associated belief.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">x2</span></code> mode near <code class="docutils literal notranslate"><span class="pre">20</span></code> is the SLIP-MODE case, and the mode near <code class="docutils literal notranslate"><span class="pre">60</span></code> is the NO-SLIP-MODE.</p>
 </section>
 </section>
 <section id="adding-variable-x3">
-<h2>Adding Variable <code class="docutils literal notranslate"><span class="pre">x3</span></code><a class="headerlink" href="#adding-variable-x3" title="Permalink to this headline">#</a></h2>
+<h2>Adding Variable <code class="docutils literal notranslate"><span class="pre">x3</span></code><a class="headerlink" href="#adding-variable-x3" title="Permalink to this heading">#</a></h2>
 <p>In suspecting that the robot did get stuck and had its wheels slip, we reverse the robot 50 units and add pose variable <code class="docutils literal notranslate"><span class="pre">x3</span></code>,  i.e. a factor measurement <code class="docutils literal notranslate"><span class="pre">LinearRelative(Normal(-50,1))</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1002,12 +993,12 @@ This part of the tutorial shows how a unimodal likelihood (conditional belief) c
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-2-nongaussian_32_0.png" src="../../_images/icra-2-nongaussian_32_0.png" />
+<img alt="../../_images/9de9e54ac1d7ed13587acf7042ce29c34e14cd7b6e9d7ea64811194674dff75d.png" src="../../_images/9de9e54ac1d7ed13587acf7042ce29c34e14cd7b6e9d7ea64811194674dff75d.png" />
 </div>
 </div>
 <p>Notice the <code class="docutils literal notranslate"><span class="pre">x3</span></code> trace is a shifted and slightly spread out version of the belief on <code class="docutils literal notranslate"><span class="pre">x2</span></code>, through the convolution with the conditional belief <code class="docutils literal notranslate"><span class="pre">P(Z</span> <span class="pre">|</span> <span class="pre">X2,</span> <span class="pre">X3)</span></code>.</p>
 <section id="the-last-factor">
-<h3>The Last Factor<a class="headerlink" href="#the-last-factor" title="Permalink to this headline">#</a></h3>
+<h3>The Last Factor<a class="headerlink" href="#the-last-factor" title="Permalink to this heading">#</a></h3>
 <p>Only by introducing more information into the factor graph can inference extract more precise marginal belief estimates for each of the variables.
 A final piece of information added to this graph is a factor directly relating <code class="docutils literal notranslate"><span class="pre">x3</span></code> with <code class="docutils literal notranslate"><span class="pre">x0</span></code>.</p>
 <div class="cell docutils container">
@@ -1026,7 +1017,7 @@ The last factor introduces a shift <code class="docutils literal notranslate"><s
 </section>
 </section>
 <section id="solve-the-graph">
-<h2>Solve the Graph<a class="headerlink" href="#solve-the-graph" title="Permalink to this headline">#</a></h2>
+<h2>Solve the Graph<a class="headerlink" href="#solve-the-graph" title="Permalink to this heading">#</a></h2>
 <p>Global inference over the full graph can now be triggered.
 Again, we use <code class="docutils literal notranslate"><span class="pre">solveSession</span></code> to trigger the final solve in the NavAbility platform.</p>
 <div class="cell docutils container">
@@ -1047,7 +1038,7 @@ By doing global inference, the new information obtained in <code class="docutils
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-2-nongaussian_39_0.png" src="../../_images/icra-2-nongaussian_39_0.png" />
+<img alt="../../_images/d102352090a86b077d9cd3c025ddaaab18c862d38193080bcd7b59291b961b3c.png" src="../../_images/d102352090a86b077d9cd3c025ddaaab18c862d38193080bcd7b59291b961b3c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1061,11 +1052,11 @@ By doing global inference, the new information obtained in <code class="docutils
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-2-nongaussian_40_0.png" src="../../_images/icra-2-nongaussian_40_0.png" />
+<img alt="../../_images/daec27db72bd11b42822ec7c579b4673ce44f06a6828818f0bd55b2a65e3b842.png" src="../../_images/daec27db72bd11b42822ec7c579b4673ce44f06a6828818f0bd55b2a65e3b842.png" />
 </div>
 </div>
 <section id="re-solve-to-ensure-stable-solution">
-<h3>Re-solve to ensure Stable Solution<a class="headerlink" href="#re-solve-to-ensure-stable-solution" title="Permalink to this headline">#</a></h3>
+<h3>Re-solve to ensure Stable Solution<a class="headerlink" href="#re-solve-to-ensure-stable-solution" title="Permalink to this heading">#</a></h3>
 <p>Resolving will demonstrate a stable solution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1079,7 +1070,7 @@ By doing global inference, the new information obtained in <code class="docutils
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-2-nongaussian_42_0.png" src="../../_images/icra-2-nongaussian_42_0.png" />
+<img alt="../../_images/daec27db72bd11b42822ec7c579b4673ce44f06a6828818f0bd55b2a65e3b842.png" src="../../_images/daec27db72bd11b42822ec7c579b4673ce44f06a6828818f0bd55b2a65e3b842.png" />
 </div>
 </div>
 <p>The resulting posterior marginal beliefs over all the system variables are:</p>
@@ -1098,20 +1089,20 @@ By doing global inference, the new information obtained in <code class="docutils
 </div>
 </section>
 <section id="the-wheels-did-slip">
-<h3>The Wheels Did Slip!<a class="headerlink" href="#the-wheels-did-slip" title="Permalink to this headline">#</a></h3>
+<h3>The Wheels Did Slip!<a class="headerlink" href="#the-wheels-did-slip" title="Permalink to this heading">#</a></h3>
 <p>Look, the resulting distance from <code class="docutils literal notranslate"><span class="pre">x1</span></code> to <code class="docutils literal notranslate"><span class="pre">x2</span></code> with all the data available turns out to be 10 units.  This is much less than the 60 units measured by the encoder.  This means the SLIP-MODE case survived, and no-slip case disappeard.</p>
 <p>This example here is constructed in such a way that when all data is considered together a clear answer can be extracted.  In real situations, the beliefs could be more nuanced – which is all the more reason to consider non-Gaussian estimation which permanently keeps track of the nuanced features hidden in the data!</p>
 </section>
 </section>
 <section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
 <p>It is important to note that although this tutorial ends with all marginal beliefs having near Gaussian shape and are unimodal, that the package supports multi-modal belief estimates during both the prediction and global inference processes.</p>
 </section>
 <section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">#</a></h2>
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">#</a></h2>
 <p>The next tutorial looks at weakly observable (a.k.a. missing / insufficient data, or underdetermined) situations where all Gaussian measurements result in highly non-Gaussian and multi-modal posterior estimates.</p>
 <section id="case-study-marine-surface-navigation">
-<h3>Case Study: Marine Surface Navigation<a class="headerlink" href="#case-study-marine-surface-navigation" title="Permalink to this headline">#</a></h3>
+<h3>Case Study: Marine Surface Navigation<a class="headerlink" href="#case-study-marine-surface-navigation" title="Permalink to this heading">#</a></h3>
 <p>Furthermore, this tutorial has practical value.  For example, NavAbility developed a GPS-denied navigation technique for marine surface vehicles whereby consecutive radar sweeps are correlated for extracting odometry measurements.  These correlations, as it turns out, are non-Gaussian and on many occasions and exhibit multi-modal behavior similar to the tutorial illustrated above.</p>
 <p><strong>Real World Non-Gaussian Odometry Measurement</strong></p>
 <p>The left image below shows two consecutive <code class="docutils literal notranslate"><span class="pre">360</span> <span class="pre">degree</span></code> radar sweeps from a marine surface vehicle.  The right-hand image shows a slice from the dense correlation map on the <code class="docutils literal notranslate"><span class="pre">SpecialEuclidean(2)</span></code> manifold when looking for the best alignment between the two radar sweeps – notice the non-Gaussian / multi-modal behavior!  This type of non-Gaussian measurement can readily be used in the NavAbility and Caesar.jl solver system.  See the <a class="reference external" href="https://www.navability.io/applications/marine/">NavAbility Marine Surface Navigation Case Study page</a> for more details.</p>
@@ -1141,50 +1132,256 @@ By doing global inference, the new information obtained in <code class="docutils
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="icra-1-simple.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Tutorial 1: Creating and Solving Factor Graphs</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="icra-3-rangeonly.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tutorial 3: Insufficient Data (2D Range-only)</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="icra-1-simple.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Tutorial 1: Creating and Solving Factor Graphs</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="icra-3-rangeonly.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Tutorial 3: Insufficient Data (2D Range-only)</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By NavAbility Inc.<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 2: Non-Gaussian Measurements
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#youtube-walk-through-video">
+     YouTube Walk Through Video
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#applications-with-ambiguous-data">
+     Applications with Ambiguous Data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-basic-1d-example">
+       A Basic 1D Example
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#signatures-used">
+       Signatures Used
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ambiguous-data-example">
+     Ambiguous Data Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#icra-survey">
+   ICRA Survey
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#starting-a-1d-factor-graph">
+     Starting a 1D Factor Graph
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#variable-continuousscalar">
+       Variable,
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         ContinuousScalar
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prior-factor-euclidean-1">
+       Prior Factor, (Euclidean(1))
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizing-graph-topology">
+       Visualizing Graph Topology
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#next-variable-and-relative-factor">
+       Next Variable and Relative Factor
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizing-the-variable-probability-belief">
+       Visualizing the Variable Probability Belief
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-gaussian-measurement-to-x2">
+     Non-Gaussian Measurement to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       x2
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#non-parametric-measurements">
+       Non-parametric Measurements
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mixture-distribution-on-next-relative-factor-wheel-slip">
+       Mixture Distribution on Next Relative Factor (Wheel Slip)
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#each-mode-mean-slip-or-no-slip">
+       Each Mode Mean Slip or No-Slip
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-variable-x3">
+     Adding Variable
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       x3
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-last-factor">
+       The Last Factor
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solve-the-graph">
+     Solve the Graph
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#re-solve-to-ensure-stable-solution">
+       Re-solve to ensure Stable Solution
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-wheels-did-slip">
+       The Wheels Did Slip!
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conclusion">
+     Conclusion
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#next-steps">
+     Next Steps
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#case-study-marine-surface-navigation">
+       Case Study: Marine Surface Navigation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By NavAbility Inc.
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2022.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>

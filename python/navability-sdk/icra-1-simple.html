@@ -1,30 +1,36 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Tutorial 1: Creating and Solving Factor Graphs &#8212; NavAbility ICRA2022 Tutorials</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
@@ -37,18 +43,20 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script src="../../_static/tabs.js"></script>
     <script src="../../_static/js/hoverxref.js"></script>
     <script src="../../_static/js/tooltipster.bundle.min.js"></script>
@@ -57,7 +65,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -67,61 +75,282 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/navability-sdk/icra-1-simple';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Tutorial 2: Non-Gaussian Measurements" href="icra-2-nongaussian.html" />
     <link rel="prev" title="Introduction" href="../../index.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
         
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Tutorial 1: Creating and Solving Factor Graphs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-2-nongaussian.html">
+                        Tutorial 2: Non-Gaussian Measurements
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-3-rangeonly.html">
+                        Tutorial 3: Insufficient Data (2D Range-only)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-4-contradictorydata.html">
+                        Tutorial 4, Leveraging (Contradictory) Prior Data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-5-marineexample.html">
+                        Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
-      <img src="../../_static/logo.png" class="logo" alt="logo">
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-      <h1 class="site-logo" id="site-title">NavAbility ICRA2022 Tutorials</h1>
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Tutorial 1: Creating and Solving Factor Graphs
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-2-nongaussian.html">
+                        Tutorial 2: Non-Gaussian Measurements
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-3-rangeonly.html">
+                        Tutorial 3: Insufficient Data (2D Range-only)
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-4-contradictorydata.html">
+                        Tutorial 4, Leveraging (Contradictory) Prior Data
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="icra-5-marineexample.html">
+                        Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it
+                      </a>
+                    </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -130,511 +359,315 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Python SDK
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python SDK</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Tutorial 1: Creating and Solving Factor Graphs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="icra-2-nongaussian.html">
-   Tutorial 2: Non-Gaussian Measurements
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="icra-3-rangeonly.html">
-   Tutorial 3: Insufficient Data (2D Range-only)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="icra-4-contradictorydata.html">
-   Tutorial 4, Leveraging (Contradictory) Prior Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="icra-5-marineexample.html">
-   Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tutorial 1: Creating and Solving Factor Graphs</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="icra-2-nongaussian.html">Tutorial 2: Non-Gaussian Measurements</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="icra-3-rangeonly.html">Tutorial 3: Insufficient Data (2D Range-only)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="icra-4-contradictorydata.html">Tutorial 4, Leveraging (Contradictory) Prior Data</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="icra-5-marineexample.html">Tutorial 5: Less Time Wrangling Data, More Time Understanding/Actioning it</a></li>
+
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/NavAbility/BinderNotebooks/main?urlpath=tree/docs/python/navability-sdk/icra-1-simple.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
+  <ul class="dropdown-menu">
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/NavAbility/BinderNotebooks/"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/NavAbility/BinderNotebooks/" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
-<span class="headerbtn__text-container">repository</span>
+<span class="btn__text-container">repository</span>
 </a>
-
-      </li>
+</a>
       
-      <li>
-        <a href="https://github.com/NavAbility/BinderNotebooks//issues/new?title=Issue%20on%20page%20%2Fpython/navability-sdk/icra-1-simple.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
+      <li><a href="https://github.com/NavAbility/BinderNotebooks//issues/new?title=Issue%20on%20page%20%2Fpython/navability-sdk/icra-1-simple.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Open an issue"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-lightbulb"></i>
   </span>
-<span class="headerbtn__text-container">open issue</span>
+<span class="btn__text-container">open issue</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/python/navability-sdk/icra-1-simple.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../../_sources/python/navability-sdk/icra-1-simple.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Tutorial 1: Creating and Solving Factor Graphs
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#youtube-walk-through-video">
-     YouTube Walk Through Video:
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#application-of-this-tutorial">
-     Application of this Tutorial
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#vision-interacting-robotics">
-       Vision: Interacting Robotics
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#icra-survey">
-   ICRA Survey
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-a-factor-graph">
-     What is a Factor Graph
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#loading-the-packages">
-       Loading the Packages
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-a-factor-graph">
-     Build a factor graph
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#variables-and-factors">
-     Variables and Factors
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solving">
-     Solving
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#multi-sensor-data-fusion">
-       Multi-Sensor Data Fusion
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#results">
-     Results
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-a-landmark-from-a-different-sensor">
-     Adding A Landmark from a Different Sensor
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#adding-a-loop-closure">
-       Adding a Loop Closure
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#batch-parametric-solver">
-       Batch parametric solver
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#next-steps">
-     Next Steps
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#additional-resources">
-     Additional Resources
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#factors-are-on-manifold">
-       Factors are On-Manifold
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#custom-variables-and-factors">
-       Custom Variables and Factors
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#bayes-junction-tree">
-       Bayes (Junction) Tree
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Tutorial 1: Creating and Solving Factor Graphs</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Tutorial 1: Creating and Solving Factor Graphs
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#youtube-walk-through-video">
-     YouTube Walk Through Video:
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#application-of-this-tutorial">
-     Application of this Tutorial
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#vision-interacting-robotics">
-       Vision: Interacting Robotics
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#icra-survey">
-   ICRA Survey
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-a-factor-graph">
-     What is a Factor Graph
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#loading-the-packages">
-       Loading the Packages
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#build-a-factor-graph">
-     Build a factor graph
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#variables-and-factors">
-     Variables and Factors
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solving">
-     Solving
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#multi-sensor-data-fusion">
-       Multi-Sensor Data Fusion
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#results">
-     Results
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-a-landmark-from-a-different-sensor">
-     Adding A Landmark from a Different Sensor
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#adding-a-loop-closure">
-       Adding a Loop Closure
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#batch-parametric-solver">
-       Batch parametric solver
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#next-steps">
-     Next Steps
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#additional-resources">
-     Additional Resources
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#factors-are-on-manifold">
-       Factors are On-Manifold
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#custom-variables-and-factors">
-       Custom Variables and Factors
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#bayes-junction-tree">
-       Bayes (Junction) Tree
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tutorial 1: Creating and Solving Factor Graphs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 1: Creating and Solving Factor Graphs
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#youtube-walk-through-video">
+     YouTube Walk Through Video:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-of-this-tutorial">
+     Application of this Tutorial
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vision-interacting-robotics">
+       Vision: Interacting Robotics
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#icra-survey">
+   ICRA Survey
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-a-factor-graph">
+     What is a Factor Graph
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#loading-the-packages">
+       Loading the Packages
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-factor-graph">
+     Build a factor graph
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variables-and-factors">
+     Variables and Factors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving">
+     Solving
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multi-sensor-data-fusion">
+       Multi-Sensor Data Fusion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results">
+     Results
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-a-landmark-from-a-different-sensor">
+     Adding A Landmark from a Different Sensor
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-a-loop-closure">
+       Adding a Loop Closure
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#batch-parametric-solver">
+       Batch parametric solver
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#next-steps">
+     Next Steps
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-resources">
+     Additional Resources
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factors-are-on-manifold">
+       Factors are On-Manifold
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#custom-variables-and-factors">
+       Custom Variables and Factors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bayes-junction-tree">
+       Bayes (Junction) Tree
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="tutorial-1-creating-and-solving-factor-graphs">
-<h1>Tutorial 1: Creating and Solving Factor Graphs<a class="headerlink" href="#tutorial-1-creating-and-solving-factor-graphs" title="Permalink to this headline">#</a></h1>
+<h1>Tutorial 1: Creating and Solving Factor Graphs<a class="headerlink" href="#tutorial-1-creating-and-solving-factor-graphs" title="Permalink to this heading">#</a></h1>
 <p>In this tutorial you will learn how to create, solve, and explore factor graphs, as well as what variables, factors, and priors are.</p>
 <p><strong>API Version: <a class="reference external" href="http://NavAbilitySDK.py">NavAbilitySDK.py</a></strong></p>
 <section id="youtube-walk-through-video">
-<h2>YouTube Walk Through Video:<a class="headerlink" href="#youtube-walk-through-video" title="Permalink to this headline">#</a></h2>
+<h2>YouTube Walk Through Video:<a class="headerlink" href="#youtube-walk-through-video" title="Permalink to this heading">#</a></h2>
 <p>You can follow along with a YouTube walk through recording of this Tutorial notebook:</p>
 <p><a class="reference external" href="https://youtu.be/ALhASCjLvjo"><img alt="Tutorial 1 Walk Through" src="https://img.youtube.com/vi/ALhASCjLvjo/0.jpg" /></a></p>
 </section>
 <section id="application-of-this-tutorial">
-<h2>Application of this Tutorial<a class="headerlink" href="#application-of-this-tutorial" title="Permalink to this headline">#</a></h2>
+<h2>Application of this Tutorial<a class="headerlink" href="#application-of-this-tutorial" title="Permalink to this heading">#</a></h2>
 <p>These tutorials apply broadly to “robotics”, and it is worth noting that we define ‘robotics’ to include</p>
 <ul class="simple">
 <li><p><strong>Infrastructure Management: Digitize</strong> construction, manufacturing, warehousing operations into real-time virtual assets</p></li>
@@ -645,7 +678,7 @@ title="Print to PDF"
 <li><p>And many more.</p></li>
 </ul>
 <section id="vision-interacting-robotics">
-<h3>Vision: Interacting Robotics<a class="headerlink" href="#vision-interacting-robotics" title="Permalink to this headline">#</a></h3>
+<h3>Vision: Interacting Robotics<a class="headerlink" href="#vision-interacting-robotics" title="Permalink to this heading">#</a></h3>
 <p>Zooming in further, let’s consider a factory environment where various interacting robotic equipment are producing and transporting objects – i.e. manufacturing and logistics support.  The figure below conceptually shows how a product winds it’s way from the factory floor, through various robotic handovers, and out via shipping on a truck.  Each robot individually needs a geometrical (and later semantic) understanding of the task object, their location, the surroundings, and of other agents.  Each robot therefore will have it’s own navigation solution.</p>
 <p>Longer term, these navigation solutions will need to interact.  The figure below shows at the highest level how factor graphs provide a technique / method / roadmap on how to develop more intelligent robotic equipment that can calibrate, localize, map, track, interact, or cooperate:</p>
 <p><img alt="Why Factor Graphs" src="https://github.com/NavAbility/BinderNotebooks/raw/main/static/icra-1/why-factorgraphs.png" /></p>
@@ -655,11 +688,11 @@ title="Print to PDF"
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="icra-survey">
-<h1>ICRA Survey<a class="headerlink" href="#icra-survey" title="Permalink to this headline">#</a></h1>
+<h1>ICRA Survey<a class="headerlink" href="#icra-survey" title="Permalink to this heading">#</a></h1>
 <p>Thanks for doing our tutorials! We really want to make sure this is valuable for you.</p>
 <p>This <a class="reference external" href="https://docs.google.com/forms/d/e/1FAIpQLScQiZHguPN7YP18-VhfbqqQw621EswuBIJZj191x70CPrCiKw/viewform?vc=0&amp;c=0&amp;w=1&amp;flr=0">quick 2 minute survey</a> will help us improve them for next year’s workshop.</p>
 <section id="what-is-a-factor-graph">
-<h2>What is a Factor Graph<a class="headerlink" href="#what-is-a-factor-graph" title="Permalink to this headline">#</a></h2>
+<h2>What is a Factor Graph<a class="headerlink" href="#what-is-a-factor-graph" title="Permalink to this heading">#</a></h2>
 <p>Calibration / localization / tracking / mapping / perception problems in robotics can be solved very effectively with factor graphs, which provide a common language to describe the underlying estimation problem from available data; and in a way both humans and computers can easily understand.   A factor graph is a graphical modelling language with two types of nodes, namely variables and factors, which are connected by edges according to how they interact.  This sketch illustrates a simple example with variables, the large circular nodes, and factors, the square nodes – note, the interactive code segments below will explain how graphs this like are constructed and why:</p>
 <p><img alt="Tut1 Graph Sketch" src="https://github.com/NavAbility/BinderNotebooks/raw/main/static/icra-1/example-fg.png" /></p>
 <p>Variables represent unknown states that the user wants the computer to estimate, such as the position or orientation of some equipment, or position of landmarks in the environment, or maybe hidden calibration parameters that are difficult to measure directly, and potetially many, many more.</p>
@@ -674,7 +707,7 @@ Our solution aleady provides a library of standard variables and factors that re
 <div><p>For additional info, see the Caesar.jl docs on <a class="reference external" href="https://juliarobotics.org/Caesar.jl/latest/concepts/concepts/#Graph-Concepts">Graph Concepts</a> and beyond, for more details on graph factorization, elimination, recycling, federated solutions, data handling, serialization and much more.</p>
 </div></blockquote>
 <section id="loading-the-packages">
-<h3>Loading the Packages<a class="headerlink" href="#loading-the-packages" title="Permalink to this headline">#</a></h3>
+<h3>Loading the Packages<a class="headerlink" href="#loading-the-packages" title="Permalink to this heading">#</a></h3>
 <p>First we will need some packages:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">NavAbilitySDK</span></code> - for interacting with the graph.</p></li>
@@ -703,7 +736,7 @@ Our solution aleady provides a library of standard variables and factors that re
 </section>
 </section>
 <section id="build-a-factor-graph">
-<h2>Build a factor graph<a class="headerlink" href="#build-a-factor-graph" title="Permalink to this headline">#</a></h2>
+<h2>Build a factor graph<a class="headerlink" href="#build-a-factor-graph" title="Permalink to this heading">#</a></h2>
 <p>To create a new factor graph with default settings create a new NavAbility client and a client that indicates the user, robot, and session.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -717,7 +750,7 @@ Our solution aleady provides a library of standard variables and factors that re
 </div>
 </section>
 <section id="variables-and-factors">
-<h2>Variables and Factors<a class="headerlink" href="#variables-and-factors" title="Permalink to this headline">#</a></h2>
+<h2>Variables and Factors<a class="headerlink" href="#variables-and-factors" title="Permalink to this heading">#</a></h2>
 <p>Variables represent state variables of interest such as vehicle or landmark positions, sensor calibration parameters, and more. Variables are likely hidden values that are not directly observed, but we want to estimate them from observed data and at least some minimal algebra structure from probabilistic measurement models.</p>
 <p>Factors represent the interaction between particular variables, as captured measurement or data cues.  For example, a distance travelled measurement between two pose variables.
 Relative factors between variables are probabilistic models that capture the likelihood interactions between variables.  Priors factors (i.e. unary to one variable) represent absolute information to be introduced about that variable, for example a GPS measurement; more on how to introduce distrust of such priors later.</p>
@@ -759,7 +792,7 @@ This unary factor is taken as a matrix <code class="docutils literal notranslate
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-1-simple_12_0.png" src="../../_images/icra-1-simple_12_0.png" />
+<img alt="../../_images/b6a0a074ddb5e0f35634af998cc3ae4b7f8625812b77d64ff4335ab8b47c2f63.png" src="../../_images/b6a0a074ddb5e0f35634af998cc3ae4b7f8625812b77d64ff4335ab8b47c2f63.png" />
 </div>
 </div>
 <p>The prior is now connected to the variable, <code class="docutils literal notranslate"><span class="pre">x0</span></code>, but it is not initialized yet. Automatic initialization of variables depends on how the factor graph model is constructed. So far, <code class="docutils literal notranslate"><span class="pre">x0</span></code> has not been initialized.</p>
@@ -788,7 +821,7 @@ Similarly to the prior we added above, we use a <code class="docutils literal no
 </div>
 </section>
 <section id="solving">
-<h2>Solving<a class="headerlink" href="#solving" title="Permalink to this headline">#</a></h2>
+<h2>Solving<a class="headerlink" href="#solving" title="Permalink to this heading">#</a></h2>
 <p>We now have a graph we can solve using the Multi-Modal iSAM (MM-iSAM) algorithm.
 The default solver will perform non-parametric inference/state-estimation over our newly created graph.</p>
 <p>Fundamentally, inference is performed via the Bayes (junction) tree where Chapman-Kolmogorov transit integral solutions are based on marginal-joint belief estimation (a sum-product / belief-propagation approximation algorithm). Many benefits such as clique recycling are also available. See the <a class="reference external" href="https://juliarobotics.org/Caesar.jl/latest/concepts/solving_graphs/">Solving Graphs</a> section in the documentation for more detail.</p>
@@ -809,19 +842,19 @@ The default solver will perform non-parametric inference/state-estimation over o
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-1-simple_20_0.png" src="../../_images/icra-1-simple_20_0.png" />
+<img alt="../../_images/59594f3ddd3cd7384ce511ca73a6b106a9e56e299f2e40e9fa887d23856288fe.png" src="../../_images/59594f3ddd3cd7384ce511ca73a6b106a9e56e299f2e40e9fa887d23856288fe.png" />
 </div>
 </div>
 <p>A <em>slightly</em> more the mathy explination.  A factor graph represents the factorization of the overall joint probability belief function that describes your system.
 It represents a breakdown of the complex problem describing your robot navigation, and does so in a way that a computer can work through in a very efficient manner.
 This factorization allows us to solve the optimization (a.k.a. inference) problem for all variables given every measurement described by the factors.</p>
 <section id="multi-sensor-data-fusion">
-<h3>Multi-Sensor Data Fusion<a class="headerlink" href="#multi-sensor-data-fusion" title="Permalink to this headline">#</a></h3>
+<h3>Multi-Sensor Data Fusion<a class="headerlink" href="#multi-sensor-data-fusion" title="Permalink to this heading">#</a></h3>
 <p>In our example so far, the graph models the position and orientation (pose) of your robot at any given time, and soon we will add relative measurements to landmarks using a different sensor but captured in the same factor graph.</p>
 </section>
 </section>
 <section id="results">
-<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">#</a></h2>
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h2>
 <p>The NavAbility WebApp allows visualization of the belief state over any of the variables.  Also try with Belief and Distribution buttons to see more of the underlying posterior marginal belief estimates.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -834,7 +867,7 @@ This factorization allows us to solve the optimization (a.k.a. inference) proble
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-1-simple_23_0.png" src="../../_images/icra-1-simple_23_0.png" />
+<img alt="../../_images/6bbcebb3c1d319a4e2e4c9c41dd1c88224080cd1d2ef517c7d3966895756ad31.png" src="../../_images/6bbcebb3c1d319a4e2e4c9c41dd1c88224080cd1d2ef517c7d3966895756ad31.png" />
 </div>
 </div>
 <p>In the App visualization, use the SHOW BELIEF button to see the underlying variable estimates in more detail.</p>
@@ -867,7 +900,7 @@ Non-parametric solutions will be discussed in more detail in tutorial 2.</p>
 <p>More plotting options exist, depending on how you are accessing the data.  See the <a class="reference external" href="https://juliarobotics.org/Caesar.jl/latest/concepts/2d_plotting/">section on Plotting in the Caesar docs</a> for additional detail.</p>
 </section>
 <section id="adding-a-landmark-from-a-different-sensor">
-<h2>Adding A Landmark from a Different Sensor<a class="headerlink" href="#adding-a-landmark-from-a-different-sensor" title="Permalink to this headline">#</a></h2>
+<h2>Adding A Landmark from a Different Sensor<a class="headerlink" href="#adding-a-landmark-from-a-different-sensor" title="Permalink to this heading">#</a></h2>
 <p>So far we worked with the <code class="docutils literal notranslate"><span class="pre">Pose2</span></code> factor type.
 Among others, <code class="docutils literal notranslate"><span class="pre">NavAbilitySDK</span></code> also provides the <code class="docutils literal notranslate"><span class="pre">Point2</span></code> variable and <code class="docutils literal notranslate"><span class="pre">Pose2Point2BearingRange</span></code> factor types, which we will use to represent a landmark sighting in our factor graph.
 We will add a landmark <code class="docutils literal notranslate"><span class="pre">l1</span></code> with bearing range measurement of bearing=<span class="math notranslate nohighlight">\((\mu=0,\sigma=0.03)\)</span> range=<span class="math notranslate nohighlight">\((\mu=0.5,\sigma=0.1)\)</span> and continue our robot trajectory by driving around in a square.</p>
@@ -900,7 +933,7 @@ We will add a landmark <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-1-simple_31_0.png" src="../../_images/icra-1-simple_31_0.png" />
+<img alt="../../_images/9fbdc6d72a8e3d7f66237db35903d7d4dd37ae4720a8b9cf934c86f086847336.png" src="../../_images/9fbdc6d72a8e3d7f66237db35903d7d4dd37ae4720a8b9cf934c86f086847336.png" />
 </div>
 </div>
 <p>We now have a longer odometry chain with one landmark sighting, let’s solve the factor graph again so we can have a look at the results.</p>
@@ -923,7 +956,7 @@ We will add a landmark <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-1-simple_35_0.png" src="../../_images/icra-1-simple_35_0.png" />
+<img alt="../../_images/d01dffef1f2b1840e517723feef2eedbbcc10551dc3ab8f16fabb6e4ec73b662.png" src="../../_images/d01dffef1f2b1840e517723feef2eedbbcc10551dc3ab8f16fabb6e4ec73b662.png" />
 </div>
 </div>
 <p>Once solving has completed, the variable results can be looked at in various ways.  Here we are just looking at the PPE values, but the full posterior marginal beliefs are available by simply asking for more results.</p>
@@ -943,7 +976,7 @@ We will add a landmark <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <section id="adding-a-loop-closure">
-<h3>Adding a Loop Closure<a class="headerlink" href="#adding-a-loop-closure" title="Permalink to this headline">#</a></h3>
+<h3>Adding a Loop Closure<a class="headerlink" href="#adding-a-loop-closure" title="Permalink to this heading">#</a></h3>
 <p>As expected, the robot continued its square trajectory to end off where it started.
 To illustrate a loop closure, we add another bearing range sighting to from pose <code class="docutils literal notranslate"><span class="pre">x4</span></code> to landmark <code class="docutils literal notranslate"><span class="pre">l1</span></code>, solve the graph and plot the new results:</p>
 <div class="cell docutils container">
@@ -967,7 +1000,7 @@ To illustrate a loop closure, we add another bearing range sighting to from pose
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-1-simple_41_0.png" src="../../_images/icra-1-simple_41_0.png" />
+<img alt="../../_images/36d42894af53c779d3bd621a348b3b00eedaa74be8cb57c125dae2911bbb6bd1.png" src="../../_images/36d42894af53c779d3bd621a348b3b00eedaa74be8cb57c125dae2911bbb6bd1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -981,29 +1014,29 @@ To illustrate a loop closure, we add another bearing range sighting to from pose
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/icra-1-simple_42_0.png" src="../../_images/icra-1-simple_42_0.png" />
+<img alt="../../_images/9be73e5dc060fbe646fabd8d09af9d2d9b5cf346cc15ee594cfa172fa3b0e881.png" src="../../_images/9be73e5dc060fbe646fabd8d09af9d2d9b5cf346cc15ee594cfa172fa3b0e881.png" />
 </div>
 </div>
 </section>
 <section id="batch-parametric-solver">
-<h3>Batch parametric solver<a class="headerlink" href="#batch-parametric-solver" title="Permalink to this headline">#</a></h3>
+<h3>Batch parametric solver<a class="headerlink" href="#batch-parametric-solver" title="Permalink to this heading">#</a></h3>
 <p>NavAbility also provides a parametric batch solver for factor graphs containing only Normal distributions as in this Tutorial.
 See the <code class="docutils literal notranslate"><span class="pre">Caesar-api/icra-1-simple.ipynb</span></code> notebook section “Using the parametric solver” for an example of how to use it.</p>
 </section>
 </section>
 <section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">#</a></h2>
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">#</a></h2>
 <p>Tutorial 2 will give an introduction to non-parametric solutions.</p>
 </section>
 <section id="additional-resources">
-<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">#</a></h2>
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Permalink to this heading">#</a></h2>
 <section id="factors-are-on-manifold">
-<h3>Factors are On-Manifold<a class="headerlink" href="#factors-are-on-manifold" title="Permalink to this headline">#</a></h3>
+<h3>Factors are On-Manifold<a class="headerlink" href="#factors-are-on-manifold" title="Permalink to this heading">#</a></h3>
 <p>The variables used in this tutorial, <code class="docutils literal notranslate"><span class="pre">Point2</span></code> and <code class="docutils literal notranslate"><span class="pre">Pose2</span></code>, are represented as points on manifolds and all algebraic operations, inference/optimization are also performed on manifold.
 For more information on how manifolds are used in Caesar.jl, refer to the <a class="reference external" href="https://juliarobotics.org/Caesar.jl/latest/concepts/using_manifolds/">manifold section in the documentation</a>.</p>
 </section>
 <section id="custom-variables-and-factors">
-<h3>Custom Variables and Factors<a class="headerlink" href="#custom-variables-and-factors" title="Permalink to this headline">#</a></h3>
+<h3>Custom Variables and Factors<a class="headerlink" href="#custom-variables-and-factors" title="Permalink to this heading">#</a></h3>
 <p>In most scenarios, the existing variables and factors should be sufficient for most robotics applications.
 Caesar however, is extensible and allows you to easily incorporate your own variable and factor types for specialized applications.</p>
 <p>Have a look at the Caesar documentation if you are interested in creating custom variables, factors (or priors)</p>
@@ -1014,7 +1047,7 @@ Caesar however, is extensible and allows you to easily incorporate your own vari
 </ul>
 </section>
 <section id="bayes-junction-tree">
-<h3>Bayes (Junction) Tree<a class="headerlink" href="#bayes-junction-tree" title="Permalink to this headline">#</a></h3>
+<h3>Bayes (Junction) Tree<a class="headerlink" href="#bayes-junction-tree" title="Permalink to this heading">#</a></h3>
 <p>Inference is performed on the Bayes tree see: <a class="reference external" href="https://juliarobotics.org/Caesar.jl/latest/principles/bayestreePrinciples/">Bayes tree principles</a></p>
 </section>
 </section>
@@ -1040,50 +1073,214 @@ Caesar however, is extensible and allows you to easily incorporate your own vari
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../../index.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introduction</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="icra-2-nongaussian.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tutorial 2: Non-Gaussian Measurements</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="../../index.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Introduction</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="icra-2-nongaussian.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Tutorial 2: Non-Gaussian Measurements</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By NavAbility Inc.<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Tutorial 1: Creating and Solving Factor Graphs
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#youtube-walk-through-video">
+     YouTube Walk Through Video:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-of-this-tutorial">
+     Application of this Tutorial
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vision-interacting-robotics">
+       Vision: Interacting Robotics
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#icra-survey">
+   ICRA Survey
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-a-factor-graph">
+     What is a Factor Graph
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#loading-the-packages">
+       Loading the Packages
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-factor-graph">
+     Build a factor graph
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variables-and-factors">
+     Variables and Factors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving">
+     Solving
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multi-sensor-data-fusion">
+       Multi-Sensor Data Fusion
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results">
+     Results
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-a-landmark-from-a-different-sensor">
+     Adding A Landmark from a Different Sensor
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-a-loop-closure">
+       Adding a Loop Closure
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#batch-parametric-solver">
+       Batch parametric solver
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#next-steps">
+     Next Steps
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-resources">
+     Additional Resources
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#factors-are-on-manifold">
+       Factors are On-Manifold
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#custom-variables-and-factors">
+       Custom Variables and Factors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bayes-junction-tree">
+       Bayes (Junction) Tree
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By NavAbility Inc.
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2022.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>
