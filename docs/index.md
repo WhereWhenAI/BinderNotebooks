@@ -10,6 +10,7 @@ See the NavAbilitySDKs:
 - [NavAbilitySDK.py][sdk-py]
 - [NavAbilitySDK.jl][sdk-jl]
 - [NavAbilitySDK.js][sdk-js]
+- NavAbilitySDK.rs (24Q3, Coming soon!)
 
 [sdk-py]: https://github.com/NavAbility/NavAbilitySDK.py
 [sdk-jl]: https://github.com/NavAbility/NavAbilitySDK.jl
