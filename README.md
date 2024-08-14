@@ -6,7 +6,7 @@ A few tutorials from NavAbility to demonstrate how to use the NavAbility SDKs in
 
 ## NavAbility Tutorials Docs
 
-See [NavAbility Tutorials here](https://wherewhenai.github.io/NavAbilitySDK.py/nvatutorials.html).
+See [NavAbility Tutorials here](https://wherewhenai.github.io/BinderNotebooks).
 
 ## Launch the Binder Notebooks here: 
 
